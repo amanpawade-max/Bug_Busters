@@ -1,0 +1,83 @@
+[
+    {
+        "req_id": "REQ-101",
+        "emp_id": "EMP101",
+        "type": "LEAVE",
+        "leave_type": "sick",
+        "start_date": "2026-07-29",
+        "end_date": "2026-07-30",
+        "days": 2,
+        "reason": "medical",
+        "status": "Pending Manager Approval"
+    },
+    {
+        "req_id": "REQ-102",
+        "emp_id": "EMP101",
+        "type": "LEAVE",
+        "leave_type": "casual",
+        "start_date": "2026-07-28",
+        "end_date": "2026-07-28",
+        "days": 1,
+        "reason": "medical",
+        "status": "Pending Manager Approval"
+    },
+    {
+        "req_id": "REQ-103",
+        "emp_id": "EMP101",
+        "type": "LEAVE",
+        "leave_type": "annual",
+        "start_date": "2026-07-30",
+        "end_date": "2026-07-31",
+        "days": 2,
+        "reason": "medical",
+        "status": "Pending Manager Approval"
+    },
+    {
+        "req_id": "INC-504",
+        "emp_id": "EMP101",
+        "type": "IT_TICKET",
+        "category": "Hardware",
+        "urgency": "LOW",
+        "summary": "need mouse",
+        "description": "need mouse",
+        "created_at": "2026-07-28 15:58:42",
+        "status": "In Progress - Assigned to IT Queue"
+    },
+    {
+        "req_id": "INC-505",
+        "emp_id": "EMP101",
+        "type": "IT_TICKET",
+        "category": "Hardware",
+        "urgency": "LOW",
+        "summary": "need mouse",
+        "description": "need mouse wierd",
+        "created_at": "2026-07-28 16:06:23",
+        "status": "In Progress - Assigned to IT Queue"
+    },
+    {
+        "req_id": "EXP-806",
+        "emp_id": "EMP101",
+        "type": "EXPENSE",
+        "report_name": "client visit",
+        "category": "Travel",
+        "amount": 50.0,
+        "currency": "USD",
+        "description": "travel boss",
+        "receipt_status": "Digital receipt attached and verified",
+        "created_at": "2026-07-28 16:14:47",
+        "status": "Submitted - Waiting for Manager Approval"
+    },
+    {
+        "req_id": "TRV-907",
+        "emp_id": "EMP101",
+        "type": "TRAVEL",
+        "destination": "london",
+        "start_date": "2026-07-28",
+        "end_date": "2026-07-28",
+        "purpose": "cilent party",
+        "budget": 1200.0,
+        "currency": "USD",
+        "created_at": "2026-07-28 16:21:43",
+        "status": "Submitted - Routing to Manager & Travel Desk"
+    }
+]

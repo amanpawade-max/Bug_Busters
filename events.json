@@ -1,0 +1,22 @@
+[
+    {
+        "event_id": "EVT-901",
+        "emp_id": "EMP101",
+        "event_type": "PASSPORT_EXPIRING_BEFORE_TRIP",
+        "urgency": "HIGH",
+        "title": "Passport Renewal Alert",
+        "details": "Your passport expires on 2026-08-15, which is during your approved international trip to London starting 2026-08-10.",
+        "suggested_action": "Initiate expedited passport renewal request with HR",
+        "status": "UNREAD"
+    },
+    {
+        "event_id": "EVT-902",
+        "emp_id": "EMP101",
+        "event_type": "PENDING_COMPLIANCE_TRAINING",
+        "urgency": "MEDIUM",
+        "title": "Cybersecurity Training Due",
+        "details": "Annual Mandatory Cybersecurity Training expires in 3 days.",
+        "suggested_action": "Open portal training link",
+        "status": "UNREAD"
+    }
+]

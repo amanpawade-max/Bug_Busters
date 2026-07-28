@@ -1,0 +1,32 @@
+[
+  {
+    "emp_id": "EMP101",
+    "name": "John Doe",
+    "email": "john.doe@enterprisecorp.com",
+    "department": "Engineering",
+    "role": "Senior Developer",
+    "manager_id": "EMP005",
+    "leave_balance": {
+      "casual": 1,
+      "sick": 5,
+      "annual": 8
+    },
+    "passport_number": "A12345678",
+    "passport_expiry": "2026-08-15"
+  },
+  {
+    "emp_id": "EMP102",
+    "name": "Sarah Smith",
+    "email": "sarah.smith@enterprisecorp.com",
+    "department": "HR",
+    "role": "HR Specialist",
+    "manager_id": "EMP005",
+    "leave_balance": {
+      "casual": 10,
+      "sick": 6,
+      "annual": 15
+    },
+    "passport_number": "B98765432",
+    "passport_expiry": "2028-11-20"
+  }
+]

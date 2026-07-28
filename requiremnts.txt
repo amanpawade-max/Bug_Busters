@@ -1,0 +1,17 @@
+langchain-core
+langchain-groq
+langchain-community
+langchain-chroma
+langgraph
+fastembed
+aiosqlite
+fastapi
+uvicorn
+pydantic
+streamlit
+python-dotenv
+requests
+livekit
+livekit-agents
+livekit-plugins-deepgram
+livekit-plugins-silero
