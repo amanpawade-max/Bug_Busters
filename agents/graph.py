@@ -42,7 +42,11 @@ def extract_universal_tool_calls(text: str) -> list:
 
 # --- HELPER: Universal Node Executor ---
 async def execute_domain_node(state: AgentState, llm_with_tools, tool_map, sys_prompt: str, sender_name: str):
-    messages = [SystemMessage(content=sys_prompt)]
+    # CRITICAL BUG FIX: Dynamically inject the logged-in user's ID into the system prompt!
+    active_emp_id = state.get("employee_id", "EMP101")
+    dynamic_prompt = sys_prompt.replace("EMP101", active_emp_id)
+    
+    messages = [SystemMessage(content=dynamic_prompt)]
     
     for m in state["messages"][-8:]:
         if isinstance(m, HumanMessage):
@@ -83,6 +87,7 @@ async def execute_domain_node(state: AgentState, llm_with_tools, tool_map, sys_p
     else:
         return {"messages": [response], "sender": sender_name}
 
+        
 # --- NODE DEFINITIONS ---
 async def supervisor_node(state: AgentState):
     latest_user_msg = ""

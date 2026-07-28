@@ -1,0 +1,97 @@
+{
+    "EMP101": {
+        "session_3438ce": [
+            {
+                "role": "assistant",
+                "content": "Hello! I'm Aiden, your Enterprise AI Assistant.\n\nI can help with HR leave balances, IT Support tickets, Finance expense claims, Business Travel itineraries, and enterprise policies.\n\nHow can I assist you today?",
+                "sender": "System"
+            },
+            {
+                "role": "user",
+                "content": "i want to track my leave  applications"
+            },
+            {
+                "role": "assistant",
+                "content": "### \ud83d\udccb Leave Balance for `EMP101`:\n\n* **SICK**: 5 days\n* **CASUAL**: 10 days\n* **ANNUAL**: 15 days",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "i want to track my leave requests"
+            },
+            {
+                "role": "assistant",
+                "content": "### \ud83d\udccb Active Leave Requests for `EMP101`:\n\n* **SICK**: `2026-07-29` to `2026-07-30` | Status: `Pending Manager Approval`\n* **CASUAL**: `2026-07-28` to `2026-07-28` | Status: `Pending Manager Approval`\n* **ANNUAL**: `2026-07-30` to `2026-07-31` | Status: `Pending Manager Approval`",
+                "sender": "HR Specialist"
+            }
+        ]
+    },
+    "EMP102": {
+        "session_a10ac9": [
+            {
+                "role": "assistant",
+                "content": "Hello! I'm Aiden, your Enterprise AI Assistant.\n\nI can help with HR leave balances, IT Support tickets, Finance expense claims, Business Travel itineraries, and enterprise policies.\n\nHow can I assist you today?",
+                "sender": "System"
+            },
+            {
+                "role": "user",
+                "content": "i want to apply for leave"
+            },
+            {
+                "role": "assistant",
+                "content": "To apply for leave, you'll need to submit a formal leave request. Please provide the following details: \n- Leave type (casual, sick, or annual)\n- Start date of your leave\n- End date of your leave\n- Reason for your leave",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "assistant",
+                "content": "### \u2705 Leave Request Submitted Successfully!\n\n* **Request ID:** `REQ-111`\n* **Leave Type:** `CASUAL` (`3 days`)\n* **Duration:** `2026-07-29` to `2026-07-31`\n* **Reason:** medical \n* **Status:** `Pending Manager Approval`",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "track my leave request"
+            },
+            {
+                "role": "assistant",
+                "content": "### \ud83d\udccb Active Leave Requests for `EMP102`:\n\n* **CASUAL**: `2026-07-29` to `2026-07-31` | Status: `Pending Manager Approval`",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "tell me how much time will it take to this leave request to get approve ?"
+            },
+            {
+                "role": "assistant",
+                "content": "The average time it takes for a leave request to get approved is typically within 2-3 business days. However, this may vary depending on the complexity of the request, the availability of your manager, and any additional documentation required.\n\nHere are some general guidelines to keep in mind:\n\n* Simple leave requests (e.g., casual leave): 1-2 business days\n* Sick leave or medical certificates: 2-3 business days\n* Annual leave or long-term leave: 3-5 business days\n* Leave requests during peak periods or holidays: 5-7 business days\n\nPlease note that these are general estimates, and the actual approval time may vary. If you have any concerns or questions, feel free to reach out to your manager or HR representative for more information.",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "also tell m eif my manager is absent what will happen of my leave requests ?"
+            },
+            {
+                "role": "assistant",
+                "content": "I can transfer you to the HR specialist to answer your question about leave requests when your manager is absent.",
+                "sender": "Knowledge Assistant"
+            },
+            {
+                "role": "user",
+                "content": "tell me if my manager is absent how will aprove my leave request"
+            },
+            {
+                "role": "assistant",
+                "content": "If your manager is absent, your leave request will be automatically routed to your skip-level manager or an assigned proxy if your primary manager has activated their out-of-office delegation.",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "i want to cheak my leave balance"
+            },
+            {
+                "role": "assistant",
+                "content": "### \ud83d\udcca Leave Balances for Sarah Smith (`EMP102`)\n\n* \ud83d\udfe2 **Casual Leave:** `10 days remaining`\n* \ud83d\udfe1 **Sick Leave:** `6 days remaining`\n* \ud83d\udd35 **Annual Leave:** `15 days remaining`",
+                "sender": "HR Specialist"
+            }
+        ]
+    }
+}

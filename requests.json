@@ -101,5 +101,29 @@
         "description": "i need bag",
         "created_at": "2026-07-28 16:49:51",
         "status": "In Progress - Assigned to IT Queue"
+    },
+    {
+        "req_id": "TRV-910",
+        "emp_id": "EMP101",
+        "type": "TRAVEL",
+        "destination": "new york",
+        "start_date": "2026-07-29",
+        "end_date": "2026-07-31",
+        "purpose": "meeting",
+        "budget": 1200.0,
+        "currency": "USD",
+        "created_at": "2026-07-28 23:14:22",
+        "status": "Submitted - Routing to Manager & Travel Desk"
+    },
+    {
+        "req_id": "REQ-111",
+        "emp_id": "EMP102",
+        "type": "LEAVE",
+        "leave_type": "casual",
+        "start_date": "2026-07-29",
+        "end_date": "2026-07-31",
+        "days": 3,
+        "reason": "medical ",
+        "status": "Pending Manager Approval"
     }
 ]
