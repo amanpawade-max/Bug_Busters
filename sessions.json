@@ -92,6 +92,13 @@
                 "content": "### \ud83d\udcca Leave Balances for Sarah Smith (`EMP102`)\n\n* \ud83d\udfe2 **Casual Leave:** `10 days remaining`\n* \ud83d\udfe1 **Sick Leave:** `6 days remaining`\n* \ud83d\udd35 **Annual Leave:** `15 days remaining`",
                 "sender": "HR Specialist"
             }
+        ],
+        "session_7665c9": [
+            {
+                "role": "assistant",
+                "content": "New workspace session created. How can I assist you today?",
+                "sender": "System"
+            }
         ]
     }
 }
