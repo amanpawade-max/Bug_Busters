@@ -1,0 +1,7 @@
+venv/
+.venv/
+chroma_db/
+data/
+*.sqlite
+*.dll
+*.pyd

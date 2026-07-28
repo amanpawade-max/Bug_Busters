@@ -1,0 +1,32 @@
+# Web Framework & UI
+streamlit>=1.36.0
+fastapi>=0.111.0
+uvicorn>=0.30.0
+python-dotenv>=1.0.1
+
+# Core LangChain & LangGraph Ecosystem
+langchain>=0.2.0
+langchain-core>=0.2.0
+langchain-community>=0.2.0
+langgraph>=0.1.0
+langsmith>=0.1.0
+
+# LLM Providers & Vector Stores (Lightweight FastEmbed)
+langchain-groq>=0.1.0
+langchain-chroma>=0.1.1
+chromadb>=0.5.0
+fastembed>=0.3.0
+pypdf>=4.2.0
+
+# Voice & LiveKit WebRTC Integration
+livekit>=1.0.0
+livekit-api>=1.0.0
+livekit-agents>=0.10.0
+livekit-plugins-deepgram>=0.5.0
+livekit-plugins-silero>=0.5.0
+edge-tts>=6.1.10
+
+# Checkpointing & SQLite
+langgraph-checkpoint-sqlite>=2.0.0
+aiosqlite>=0.20.0
+contextlib
