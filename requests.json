@@ -79,5 +79,27 @@
         "currency": "USD",
         "created_at": "2026-07-28 16:21:43",
         "status": "Submitted - Routing to Manager & Travel Desk"
+    },
+    {
+        "req_id": "INC-508",
+        "emp_id": "EMP101",
+        "type": "IT_TICKET",
+        "category": "Hardware",
+        "urgency": "LOW",
+        "summary": "need keyboard",
+        "description": "need key board\n\n",
+        "created_at": "2026-07-28 16:35:06",
+        "status": "In Progress - Assigned to IT Queue"
+    },
+    {
+        "req_id": "INC-509",
+        "emp_id": "EMP101",
+        "type": "IT_TICKET",
+        "category": "Hardware",
+        "urgency": "LOW",
+        "summary": "i need bag",
+        "description": "i need bag",
+        "created_at": "2026-07-28 16:49:51",
+        "status": "In Progress - Assigned to IT Queue"
     }
 ]

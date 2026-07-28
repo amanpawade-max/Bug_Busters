@@ -7,6 +7,7 @@ import streamlit as st
 from dotenv import load_dotenv
 
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage, ToolMessage
+from agents.graph import build_master_graph
 from agents.hr_agent import get_hr_agent_executor, HR_SYSTEM_PROMPT
 from agents.it_agent import get_it_agent_executor, IT_SYSTEM_PROMPT
 from agents.finance_agent import get_finance_agent_executor, FINANCE_SYSTEM_PROMPT
@@ -18,78 +19,61 @@ from tools.travel_tools import submit_travel_request
 
 load_dotenv()
 
-def extract_leaked_tool_calls(text: str) -> list:
-    pattern = r"(?:<)?function=(\w+)>(.*?)</function>"
-    matches = re.findall(pattern, text)
+def extract_universal_tool_calls(text: str) -> list:
     extracted = []
-    for idx, (name, args_str) in enumerate(matches):
+    xml_matches = re.findall(r"(?:<)?function=(\w+)>(.*?)(?:</function>|$)", text)
+    for idx, (name, args_str) in enumerate(xml_matches):
         try:
             args = json.loads(args_str.strip())
-            extracted.append({"name": name, "args": args, "id": f"call_leaked_{idx}"})
-        except Exception:
-            pass
+            extracted.append({"name": name, "args": args, "id": f"call_xml_{idx}"})
+        except Exception: pass
+        
+    if not extracted:
+        raw_matches = re.findall(r"(\w+)\s*(\{.*?\})", text)
+        for idx, (name, args_str) in enumerate(raw_matches):
+            try:
+                args = json.loads(args_str.strip())
+                extracted.append({"name": name, "args": args, "id": f"call_raw_{idx}"})
+            except Exception: pass
     return extracted
 
-st.set_page_config(page_title="Multi-Agent Studio - EnterpriseAssist", page_icon="🤖", layout="centered")
+st.set_page_config(page_title="EnterpriseAssist Master Studio", page_icon="🌐", layout="centered")
+
+@st.cache_resource
+def get_graph(): return build_master_graph()
+master_graph = get_graph()
 
 with st.sidebar:
-    st.markdown("### 🛠️ Agent Test Studio")
-    selected_mode = st.radio("Select Domain Brain to Test:", ["👨‍💼 HR Specialist", "💻 IT Support", "💸 Finance Support", "✈️ Travel Support"], index=3)
+    st.markdown("### 🌐 Enterprise Architecture Mode")
+    selected_mode = st.radio(
+        "Select Operating Mode:",
+        ["🌐 Master Supervisor (All Agents)", "👨‍💼 HR Specialist", "💻 IT Support", "💸 Finance Support", "✈️ Travel Support"],
+        index=0
+    )
     st.markdown("---")
     if st.button("🧹 Clear Chat History", use_container_width=True):
         st.session_state.messages = []
         st.rerun()
 
-@st.cache_resource
-def load_hr_agent(): return get_hr_agent_executor()
-
-@st.cache_resource
-def load_it_agent(): return get_it_agent_executor()
-
-@st.cache_resource
-def load_finance_agent(): return get_finance_agent_executor()
-
-@st.cache_resource
-def load_travel_agent(): return get_travel_agent_executor()
-
-if selected_mode == "👨‍💼 HR Specialist":
-    llm_with_tools, tools_by_name = load_hr_agent()
-    active_prompt = HR_SYSTEM_PROMPT
-    st.markdown("## 👨‍💼 HR Specialist Studio")
-elif selected_mode == "💻 IT Support":
-    llm_with_tools, tools_by_name = load_it_agent()
-    active_prompt = IT_SYSTEM_PROMPT
-    st.markdown("## 💻 IT Support Studio")
-elif selected_mode == "💸 Finance Support":
-    llm_with_tools, tools_by_name = load_finance_agent()
-    active_prompt = FINANCE_SYSTEM_PROMPT
-    st.markdown("## 💸 Finance Support Studio")
-else:
-    llm_with_tools, tools_by_name = load_travel_agent()
-    active_prompt = TRAVEL_SYSTEM_PROMPT
-    st.markdown("## ✈️ Travel Support Studio")
-
-st.caption(f"Currently testing isolated node: **{selected_mode}** | Guardrails & Fallbacks Active")
+st.markdown("## 🌐 EnterpriseAssist AI Workspace")
+st.caption(f"Active Mode: **{selected_mode}** | Universal Regex Fallback Active")
 st.markdown("---")
 
 if "messages" not in st.session_state or not st.session_state.messages:
-    if selected_mode == "👨‍💼 HR Specialist": welcome_text = "Hello! I am your HR Specialist. Ask me about your leave or policies!"
-    elif selected_mode == "💻 IT Support": welcome_text = "Hello! I am your IT Support Helpdesk. Need policy FAQs, ticket tracking, ticket closing, or to raise an issue?"
-    elif selected_mode == "💸 Finance Support": welcome_text = "Hello! I am your Finance Assistant. Ask about expense policies, corporate cards, reimbursement timelines, or submit a claim!"
-    else: welcome_text = "Hello! I am your Travel Assistant. Ask about flight rules, hotel rate caps, per-diems, or plan a business trip!"
-    st.session_state.messages = [{"role": "assistant", "content": welcome_text}]
+    welcome_text = "Hello! I am EnterpriseAssist. Ask me about HR leave balances, IT tickets, expense claims, or travel policies!" if selected_mode == "🌐 Master Supervisor (All Agents)" else f"Hello! Operating in isolated {selected_mode} mode. How can I help you today?"
+    st.session_state.messages = [{"role": "assistant", "content": welcome_text, "sender": "System"}]
 
 chat_container = st.container(height=520)
 
 with chat_container:
     for idx, msg in enumerate(st.session_state.messages):
+        sender_badge = f" `[{msg.get('sender', 'Assistant')}]`" if msg.get("sender") and msg.get("sender") != "System" else ""
         with st.chat_message(msg["role"]):
             content = msg["content"]
             
-            # --- FORM 1: HR LEAVE FORM ---
             if "[RENDER_LEAVE_FORM]" in content:
                 clean_text = content.replace("[RENDER_LEAVE_FORM]", "").strip()
-                if clean_text: st.markdown(clean_text)
+                if clean_text: st.markdown(clean_text + sender_badge)
                 with st.form(key=f"hr_form_{idx}", clear_on_submit=True):
                     st.markdown("#### 📝 Quick Leave Application")
                     col1, col2 = st.columns(2)
@@ -104,15 +88,14 @@ with chat_container:
                         if not l_reason.strip(): st.error("Please enter a reason.")
                         else:
                             res_card = submit_leave_request.invoke({"emp_id": "EMP101", "leave_type": l_type, "start_date": str(s_date), "end_date": str(e_date), "reason": l_reason})
-                            st.session_state.messages.append({"role": "assistant", "content": res_card})
+                            st.session_state.messages.append({"role": "assistant", "content": res_card, "sender": "HR Specialist"})
                             if not clean_text: st.session_state.messages.pop(idx)
                             else: st.session_state.messages[idx]["content"] = clean_text
                             st.rerun()
 
-            # --- FORM 2: IT TICKET FORM ---
             elif "[RENDER_TICKET_FORM]" in content:
                 clean_text = content.replace("[RENDER_TICKET_FORM]", "").strip()
-                if clean_text: st.markdown(clean_text)
+                if clean_text: st.markdown(clean_text + sender_badge)
                 with st.form(key=f"it_form_{idx}", clear_on_submit=True):
                     st.markdown("#### 🎟️ Raise IT Support Ticket")
                     col1, col2 = st.columns(2)
@@ -127,15 +110,14 @@ with chat_container:
                         if not t_summary.strip() or not t_desc.strip(): st.error("Please complete summary and description.")
                         else:
                             res_card = raise_it_ticket.invoke({"emp_id": "EMP101", "category": t_cat, "urgency": t_urgency, "summary": t_summary, "description": t_desc})
-                            st.session_state.messages.append({"role": "assistant", "content": res_card})
+                            st.session_state.messages.append({"role": "assistant", "content": res_card, "sender": "IT Support"})
                             if not clean_text: st.session_state.messages.pop(idx)
                             else: st.session_state.messages[idx]["content"] = clean_text
                             st.rerun()
 
-            # --- FORM 3: FINANCE EXPENSE FORM ---
             elif "[RENDER_EXPENSE_FORM]" in content:
                 clean_text = content.replace("[RENDER_EXPENSE_FORM]", "").strip()
-                if clean_text: st.markdown(clean_text)
+                if clean_text: st.markdown(clean_text + sender_badge)
                 with st.form(key=f"fin_form_{idx}", clear_on_submit=True):
                     st.markdown("#### 💸 Submit Business Expense Claim")
                     col1, col2 = st.columns(2)
@@ -153,15 +135,14 @@ with chat_container:
                         if not f_name.strip() or not f_desc.strip(): st.error("Please complete report name and business justification.")
                         else:
                             res_card = submit_expense_claim.invoke({"emp_id": "EMP101", "report_name": f_name, "category": f_cat, "amount": f_amt, "currency": f_curr, "description": f_desc})
-                            st.session_state.messages.append({"role": "assistant", "content": res_card})
+                            st.session_state.messages.append({"role": "assistant", "content": res_card, "sender": "Finance Assistant"})
                             if not clean_text: st.session_state.messages.pop(idx)
                             else: st.session_state.messages[idx]["content"] = clean_text
                             st.rerun()
 
-            # --- FORM 4: TRAVEL REQUEST FORM ---
             elif "[RENDER_TRAVEL_FORM]" in content:
                 clean_text = content.replace("[RENDER_TRAVEL_FORM]", "").strip()
-                if clean_text: st.markdown(clean_text)
+                if clean_text: st.markdown(clean_text + sender_badge)
                 with st.form(key=f"trv_form_{idx}", clear_on_submit=True):
                     st.markdown("#### ✈️ Request Business Travel Itinerary")
                     col1, col2 = st.columns(2)
@@ -171,79 +152,84 @@ with chat_container:
                     with col2:
                         emp_id = st.text_input("Employee ID", value="EMP101", disabled=True)
                         trv_e_date = st.date_input("Return Date", min_value=datetime.date.today())
-                    
                     c1, c2 = st.columns([1, 2])
                     with c1: trv_curr = st.selectbox("Currency", ["USD", "EUR", "GBP", "INR"])
                     with c2: trv_budget = st.number_input("Estimated Total Budget", min_value=50.0, value=1200.0, step=50.0)
-                    
                     trv_purpose = st.text_area("Business Purpose & Justification", placeholder="e.g. Annual Global Sales Conference / Client Onboarding")
                     st.caption("✈️ Policy Note: Flights under 6 hours must be booked in Economy. Always select corporate rates for Marriott/Hilton.")
                     if st.form_submit_button("🚀 Submit Travel Plan", use_container_width=True):
                         if not trv_dest.strip() or not trv_purpose.strip(): st.error("Please provide destination and business purpose.")
                         else:
                             res_card = submit_travel_request.invoke({"emp_id": "EMP101", "destination": trv_dest, "start_date": str(trv_s_date), "end_date": str(trv_e_date), "purpose": trv_purpose, "budget": trv_budget, "currency": trv_curr})
-                            st.session_state.messages.append({"role": "assistant", "content": res_card})
+                            st.session_state.messages.append({"role": "assistant", "content": res_card, "sender": "Travel Desk"})
                             if not clean_text: st.session_state.messages.pop(idx)
                             else: st.session_state.messages[idx]["content"] = clean_text
                             st.rerun()
             else:
-                st.markdown(content)
+                st.markdown(content + sender_badge)
 
-# --- Chat Execution Loop ---
-if user_input := st.chat_input(f"Ask {selected_mode}..."):
+if user_input := st.chat_input("Ask EnterpriseAssist anything..."):
     st.session_state.messages.append({"role": "user", "content": user_input})
     with chat_container:
         with st.chat_message("user"): st.markdown(user_input)
         with st.chat_message("assistant"):
-            with st.spinner("Agent processing..."):
+            with st.spinner("Analyzing request & routing to specialist..."):
                 try:
-                    api_messages = [SystemMessage(content=active_prompt)]
-                    for m in st.session_state.messages[-8:]:
-                        if m["role"] == "user": api_messages.append(HumanMessage(content=m["content"]))
-                        else:
-                            clean_c = m["content"].replace("[RENDER_LEAVE_FORM]", "").replace("[RENDER_TICKET_FORM]", "").replace("[RENDER_EXPENSE_FORM]", "").replace("[RENDER_TRAVEL_FORM]", "").strip()
-                            if clean_c: api_messages.append(AIMessage(content=clean_c))
-                    
-                    response = asyncio.run(llm_with_tools.ainvoke(api_messages))
-                    tool_calls = response.tool_calls if hasattr(response, "tool_calls") and response.tool_calls else []
-                    
-                    if not tool_calls and "function=" in response.content:
-                        leaked_calls = extract_leaked_tool_calls(response.content)
-                        if leaked_calls:
-                            tool_calls = leaked_calls
-                            response = AIMessage(content="", tool_calls=tool_calls)
-                    
-                    if tool_calls:
-                        api_messages.append(response)
-                        tool_outputs_rendered = []
-                        for tc in tool_calls:
-                            t_name = tc["name"]
-                            t_args = tc["args"]
-                            t_id = tc.get("id", f"call_{t_name}")
-                            
-                            if t_name in tools_by_name:
-                                selected_tool = tools_by_name[t_name]
-                                tool_output = selected_tool.invoke(t_args)
-                                tool_outputs_rendered.append(tool_output)
-                                api_messages.append(ToolMessage(content=tool_output, tool_call_id=t_id))
-                            else:
-                                err_msg = f"Error: Tool '{t_name}' not available in {selected_mode} mode."
-                                tool_outputs_rendered.append(err_msg)
-                                api_messages.append(ToolMessage(content=err_msg, tool_call_id=t_id))
+                    if selected_mode == "🌐 Master Supervisor (All Agents)":
+                        state_messages = []
+                        for m in st.session_state.messages:
+                            if m["role"] == "user":
+                                state_messages.append(HumanMessage(content=m["content"]))
+                            elif m["role"] == "assistant" and m.get("sender") != "System":
+                                state_messages.append(AIMessage(content=m["content"]))
+
+                        graph_state = {"messages": state_messages, "employee_id": "EMP101"}
+                        result = asyncio.run(master_graph.ainvoke(graph_state))
                         
-                        final_response = asyncio.run(llm_with_tools.ainvoke(api_messages))
-                        final_text = final_response.content.strip()
-                        display_content = final_text if final_text and "function=" not in final_text else "\n\n".join(tool_outputs_rendered)
-                        st.markdown(display_content)
-                        st.session_state.messages.append({"role": "assistant", "content": display_content})
-                    else:
-                        if any(token in response.content for token in ["[RENDER_LEAVE_FORM]", "[RENDER_TICKET_FORM]", "[RENDER_EXPENSE_FORM]", "[RENDER_TRAVEL_FORM]"]):
-                            st.session_state.messages.append({"role": "assistant", "content": response.content})
+                        last_msg = result["messages"][-1]
+                        sender_name = result.get("sender", "Assistant")
+                        
+                        st.markdown(f"{last_msg.content} `[{sender_name}]`")
+                        st.session_state.messages.append({"role": "assistant", "content": last_msg.content, "sender": sender_name})
+                        
+                        if any(tok in last_msg.content for tok in ["[RENDER_LEAVE_FORM]", "[RENDER_TICKET_FORM]", "[RENDER_EXPENSE_FORM]", "[RENDER_TRAVEL_FORM]"]):
                             st.rerun()
+                            
+                    else:
+                        if selected_mode == "👨‍💼 HR Specialist": llm_w, t_map, p_txt = get_hr_agent_executor()[0], get_hr_agent_executor()[1], HR_SYSTEM_PROMPT
+                        elif selected_mode == "💻 IT Support": llm_w, t_map, p_txt = get_it_agent_executor()[0], get_it_agent_executor()[1], IT_SYSTEM_PROMPT
+                        elif selected_mode == "💸 Finance Support": llm_w, t_map, p_txt = get_finance_agent_executor()[0], get_finance_agent_executor()[1], FINANCE_SYSTEM_PROMPT
+                        else: llm_w, t_map, p_txt = get_travel_agent_executor()[0], get_travel_agent_executor()[1], TRAVEL_SYSTEM_PROMPT
+                        
+                        api_messages = [SystemMessage(content=p_txt)]
+                        for m in st.session_state.messages[-8:]:
+                            if m["role"] == "user": api_messages.append(HumanMessage(content=m["content"]))
+                            elif m["role"] == "assistant" and m.get("sender") != "System":
+                                clean_c = m["content"].replace("[RENDER_LEAVE_FORM]", "").replace("[RENDER_TICKET_FORM]", "").replace("[RENDER_EXPENSE_FORM]", "").replace("[RENDER_TRAVEL_FORM]", "").strip()
+                                if clean_c: api_messages.append(AIMessage(content=clean_c))
+                                
+                        response = asyncio.run(llm_w.ainvoke(api_messages))
+                        tool_calls = response.tool_calls if hasattr(response, "tool_calls") and response.tool_calls else []
+                        if not tool_calls and any(kw in response.content for kw in ["function=", "search_", "track_", "get_", "reset_", "close_"]):
+                            leaked_calls = extract_universal_tool_calls(response.content)
+                            if leaked_calls: tool_calls = leaked_calls; response = AIMessage(content="", tool_calls=tool_calls)
+                            
+                        if tool_calls:
+                            api_messages.append(response)
+                            outputs = [t_map[tc["name"]].invoke(tc["args"]) if tc["name"] in t_map else f"Error: {tc['name']} not found." for tc in tool_calls]
+                            for idx, out in enumerate(outputs): api_messages.append(ToolMessage(content=out, tool_call_id=tool_calls[idx].get("id", f"id_{idx}")))
+                            final_res = asyncio.run(llm_w.ainvoke(api_messages))
+                            display = final_res.content.strip() if final_res.content.strip() and "function=" not in final_res.content and "{" not in final_res.content else "\n\n".join(outputs)
+                            st.markdown(display)
+                            st.session_state.messages.append({"role": "assistant", "content": display, "sender": selected_mode})
                         else:
-                            st.markdown(response.content)
-                            st.session_state.messages.append({"role": "assistant", "content": response.content})
+                            if any(tok in response.content for tok in ["[RENDER_LEAVE_FORM]", "[RENDER_TICKET_FORM]", "[RENDER_EXPENSE_FORM]", "[RENDER_TRAVEL_FORM]"]):
+                                st.session_state.messages.append({"role": "assistant", "content": response.content, "sender": selected_mode})
+                                st.rerun()
+                            else:
+                                st.markdown(response.content)
+                                st.session_state.messages.append({"role": "assistant", "content": response.content, "sender": selected_mode})
                 except Exception as e:
-                    err_text = f"❌ Error: {str(e)}"
-                    st.error(err_text)
-                    st.session_state.messages.append({"role": "assistant", "content": err_text})
+                    err = f"❌ Error: {str(e)}"
+                    st.error(err)
+                    st.session_state.messages.append({"role": "assistant", "content": err, "sender": "System"})
