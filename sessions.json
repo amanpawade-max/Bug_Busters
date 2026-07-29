@@ -1,37 +1,154 @@
 {
     "EMP101": {
-        "session_9ac26a": [
+        "session_af41c7": [
             {
                 "role": "assistant",
-                "content": "Hello! I'm Aiden, your Enterprise AI Assistant.\n\nI can help with HR leave balances, IT Support tickets, Finance expense claims, Business Travel itineraries, and enterprise policies.\n\nHow can I assist you today?",
+                "content": "New workspace session created. How can I assist you today?",
                 "sender": "System"
             },
             {
                 "role": "user",
-                "content": "how won the ipl 2025"
+                "content": "Thank you."
             },
             {
                 "role": "assistant",
-                "content": "I'm not aware of any information about the IPL 2025 as my knowledge cutoff is December 2023.",
+                "content": "You're welcome. Is there anything else I can help you with?",
                 "sender": "Knowledge Assistant"
             },
             {
                 "role": "user",
-                "content": "who won the ipl 2022"
+                "content": "how many leaves do i have "
             },
             {
                 "role": "assistant",
-                "content": "The Gujarat Titans won the IPL 2022.",
-                "sender": "Travel Desk"
+                "content": "###  Leave Balances for John Doe (`EMP101`)\n\n* \ud83d\udfe2 **Casual Leave:** `1 days remaining`\n* \ud83d\udfe1 **Sick Leave:** `5 days remaining`\n* \ud83d\udd35 **Annual Leave:** `8 days remaining`",
+                "sender": "HR Specialist"
             },
             {
                 "role": "user",
-                "content": "how many leaves i have"
+                "content": "If my manager is absent, who will approve my lease request?"
             },
             {
                 "role": "assistant",
-                "content": "\u274c Backend Processing Error: Error code: 400 - {'error': {'message': \"Failed to call a function. Please adjust your prompt. See 'failed_generation' for more details.\", 'type': 'invalid_request_error', 'code': 'tool_use_failed', 'failed_generation': '<function=get_leave_balance>{\"emp_id\": \"EMP101\"}'}}",
+                "content": "If your manager is absent, your leave request will be automatically routed to your skip-level manager or an assigned proxy if your primary manager has activated their out-of-office delegation.",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "If my manager is absent, who will approve my lease request?"
+            },
+            {
+                "role": "assistant",
+                "content": "If your manager is absent, your leave request will be automatically routed to your skip-level manager or an assigned proxy if your primary manager has activated their out-of-office delegation.",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "tell me something abou tthe company "
+            },
+            {
+                "role": "assistant",
+                "content": "\u274c Backend Processing Error: Error code: 400 - {'error': {'message': \"Failed to call a function. Please adjust your prompt. See 'failed_generation' for more details.\", 'type': 'invalid_request_error', 'code': 'tool_use_failed', 'failed_generation': '<function=search_general_policy>{\"query\": \"company history\"}'}}",
                 "sender": "System"
+            },
+            {
+                "role": "user",
+                "content": "If my manager is absent, who will approve my leave request?"
+            },
+            {
+                "role": "assistant",
+                "content": "If your manager is absent, your leave request will be automatically routed to your skip-level manager or an assigned proxy if your primary manager has activated their out-of-office delegation.",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "If my manager is absent, who will approve my leave request?"
+            },
+            {
+                "role": "assistant",
+                "content": "If your manager is absent, your leave request will be automatically routed to your skip-level manager or an assigned proxy if your primary manager has activated their out-of-office delegation.",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "i want to apply for leave"
+            },
+            {
+                "role": "assistant",
+                "content": "To submit a formal leave request, you'll need to provide the following details: \n- Employee ID (which is EMP101)\n- Leave type (e.g., annual, sick, or casual)\n- Start date\n- End date\n- Reason for leave\n\nPlease provide these details, and I'll guide you through the process. [RENDER_LEAVE_FORM]",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "hey tell me hwo many leaves do i have "
+            },
+            {
+                "role": "assistant",
+                "content": "###  Leave Balances for John Doe (`EMP101`)\n\n* \ud83d\udfe2 **Casual Leave:** `1 days remaining`\n* \ud83d\udfe1 **Sick Leave:** `5 days remaining`\n* \ud83d\udd35 **Annual Leave:** `8 days remaining`",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "if my manager is absent who will aprove the leave request"
+            },
+            {
+                "role": "assistant",
+                "content": "If your manager is absent, your leave request will be automatically routed to your skip-level manager or an assigned proxy if your primary manager has activated their out-of-office delegation.",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "What are the basic security guidelines that I should follow?"
+            },
+            {
+                "role": "assistant",
+                "content": "Based on the general company guidelines, here are the basic security guidelines you should follow:\n\n* Be cautious when clicking on links or downloading attachments from unknown senders, and forward suspicious emails to phishing@enterprisecorp.com.\n* Lock your workstation every time you step away and do not leave physical documents containing sensitive data on your desk.\n* Ensure that all corporate laptops and mobile devices have BitLocker or FileVault enabled, and do not root or jailbreak corporate devices.\n* Avoid accessing corporate resources on public Wi-Fi, and use secure networks for sensitive work.\n* Be mindful of data privacy and adhere to GDPR, CCPA, and local data laws when processing employee and customer data.\n* Refrain from sharing confidential EnterpriseCorp information on public platforms or speaking on behalf of the company without PR authorization.",
+                "sender": "Knowledge Assistant"
+            },
+            {
+                "role": "user",
+                "content": "i am facing problem in wifi conectiity issue , what should i do "
+            },
+            {
+                "role": "assistant",
+                "content": "### \ud83d\udda5\ufe0f Active IT Tickets for `EMP101`:\n\n* **[INC-504]** `HARDWARE` (LOW Urgency): need mouse | Status: `In Progress - Assigned to IT Queue`\n* **[INC-505]** `HARDWARE` (LOW Urgency): need mouse | Status: `In Progress - Assigned to IT Queue`\n* **[INC-508]** `HARDWARE` (LOW Urgency): need keyboard | Status: `In Progress - Assigned to IT Queue`\n* **[INC-509]** `HARDWARE` (LOW Urgency): i need bag | Status: `In Progress - Assigned to IT Queue`",
+                "sender": "IT Support"
+            },
+            {
+                "role": "user",
+                "content": "what is anti  harasment policy "
+            },
+            {
+                "role": "assistant",
+                "content": "Based on the EnterpriseCorp's anti-harassment policy, here are the key points:\n\n*   **Definition of Harassment:** Any unwelcome or uninvited behavior that creates a hostile, intimidating, or offensive work environment.\n*   **Types of Harassment:** This includes, but is not limited to:\n    *   Verbal harassment (e.g., derogatory comments, slurs, or epithets)\n    *   Physical harassment (e.g., unwanted touching, gestures, or physical contact)\n    *   Visual harassment (e.g., displaying explicit or offensive images)\n    *   Cyber harassment (e.g., sending threatening or explicit messages)\n*   **Reporting Harassment:** If you experience or witness harassment, report it to your supervisor, HR representative, or the designated Compliance Officer.\n*   **Consequences of Harassment:** Engaging in harassment can result in disciplinary action, up to and including termination of employment.\n*   **Support for Victims:** EnterpriseCorp provides a safe and confidential reporting process for victims of harassment. You can also seek support from HR, Employee Assistance Programs (EAPs), or external resources.\n*   **Training and Education:** Regular training and education programs will be provided to ensure all employees understand and adhere to the anti-harassment policy.\n*   **Zero-Tolerance Policy:** EnterpriseCorp has a zero-tolerance policy towards harassment, and we will take all necessary steps to prevent and address any incidents.",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "How much time does it usually take to resolve an IT ticket?"
+            },
+            {
+                "role": "assistant",
+                "content": "According to our IT policy guidelines, the average time to resolve an IT ticket is typically within 48 hours for Medium priority tickets, as per our SLA (Service Level Agreement). However, this may vary depending on the complexity of the issue and the workload of our IT team. If you have any concerns about the status of your ticket, you can always track it using the Internal Helpdesk portal or reach out to us directly.",
+                "sender": "IT Support"
+            },
+            {
+                "role": "user",
+                "content": "How do I apply for urgent leave if the employee portal is experiencing a global outage?"
+            },
+            {
+                "role": "assistant",
+                "content": "Since the employee portal is experiencing a global outage, you can't apply for urgent leave through the portal. However, you have a few options:\n\n* You can email it-support@enterprisecorp.com to raise a critical ticket, and it will be auto-generated.\n* You can call the 24/7 Global IT Support hotline to report the issue and request urgent leave.\n* If you have already reported the issue and it's not being addressed, you can try to escalate the ticket by clicking the \"Escalate\" button next to the ticket in your portal, if it's available.\n\nPlease note that these options may not be available in all regions or countries, and you should check with your local IT support team for specific instructions.",
+                "sender": "IT Support"
+            },
+            {
+                "role": "user",
+                "content": "How much time does it usually take to resolve any IT ticket?"
+            },
+            {
+                "role": "assistant",
+                "content": "According to our IT policy guidelines, the average time to resolve an IT ticket is typically within 48 hours for Medium priority tickets. However, this may vary depending on the complexity of the issue and the workload of our IT team. If you have any concerns about the status of your ticket, you can always check the Helpdesk portal or reach out to us directly.",
+                "sender": "IT Support"
             },
             {
                 "role": "user",
@@ -39,21 +156,12 @@
             },
             {
                 "role": "assistant",
-                "content": "### \ud83d\udcca Leave Balances for John Doe (`EMP101`)\n\n* \ud83d\udfe2 **Casual Leave:** `1 days remaining`\n* \ud83d\udfe1 **Sick Leave:** `5 days remaining`\n* \ud83d\udd35 **Annual Leave:** `8 days remaining`",
+                "content": "###  Leave Balances for John Doe (`EMP101`)\n\n* \ud83d\udfe2 **Casual Leave:** `1 days remaining`\n* \ud83d\udfe1 **Sick Leave:** `5 days remaining`\n* \ud83d\udd35 **Annual Leave:** `8 days remaining`",
                 "sender": "HR Specialist"
             },
             {
                 "role": "user",
-                "content": "How long does it take to receive the funds once marked \"Processing\"?"
-            },
-            {
-                "role": "assistant",
-                "content": "It takes approximately 7-10 business days to receive the funds once marked \"Processing\".",
-                "sender": "Finance Assistant"
-            },
-            {
-                "role": "user",
-                "content": "if my manager is absentqho will approve my leave request ?"
+                "content": "If my manager is absent, who will approve my leave request?"
             },
             {
                 "role": "assistant",
@@ -61,11 +169,176 @@
                 "sender": "HR Specialist"
             }
         ],
-        "session_cfe7d8": [
+        "session_af90d4": [
             {
                 "role": "assistant",
                 "content": "New workspace session created. How can I assist you today?",
                 "sender": "System"
+            },
+            {
+                "role": "user",
+                "content": "If my manager is absent, who will approve my leave request?"
+            },
+            {
+                "role": "assistant",
+                "content": "If your manager is absent, your leave request will be automatically routed to your skip-level manager or an assigned proxy if your primary manager has activated their out-of-office delegation.",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "how many leaves do i have"
+            },
+            {
+                "role": "assistant",
+                "content": "###  Leave Balances for John Doe (`EMP101`)\n\n* \ud83d\udfe2 **Casual Leave:** `1 days remaining`\n* \ud83d\udfe1 **Sick Leave:** `5 days remaining`\n* \ud83d\udd35 **Annual Leave:** `8 days remaining`",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "If my manager is absent, who will approve my leave request?"
+            },
+            {
+                "role": "assistant",
+                "content": "If your manager is absent, your leave request will be automatically routed to your skip-level manager or an assigned proxy if your primary manager has activated their out-of-office delegation.",
+                "sender": "HR Specialist"
+            }
+        ],
+        "session_0af87f": [
+            {
+                "role": "assistant",
+                "content": "New workspace session created. How can I assist you today?",
+                "sender": "System"
+            },
+            {
+                "role": "user",
+                "content": "Tell me if my manager is absent, who will approve my leave request?"
+            },
+            {
+                "role": "assistant",
+                "content": "Based on our company's policies, if your manager is absent, your leave request will be automatically routed to your skip-level manager or an assigned proxy if your primary manager has activated their out-of-office delegation.",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "Tell me if my manager is absent, who will approve my leave request?"
+            },
+            {
+                "role": "assistant",
+                "content": "Based on our company's policies, if your manager is absent, your leave request will be automatically routed to your skip-level manager or an assigned proxy if your primary manager has activated their out-of-office delegation.",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "Tell me if my manager is absent, who will approve my leave request?"
+            },
+            {
+                "role": "assistant",
+                "content": "If your manager is absent, your leave request will be automatically routed to your skip-level manager or an assigned proxy if your primary manager has activated their out-of-office delegation.",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "Tell me if my manager is absent, who will approve my leave request?"
+            },
+            {
+                "role": "assistant",
+                "content": "Based on the EnterpriseCorp HR and General company policies, if your manager is absent, your leave request will be automatically routed to your skip-level manager or an assigned proxy if your primary manager has activated their out-of-office delegation.",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "Tell me if my manager is absent, who will approve my leave request?"
+            },
+            {
+                "role": "assistant",
+                "content": "If your manager is absent, your leave request will be automatically routed to your skip-level manager or an assigned proxy if your primary manager has activated their out-of-office delegation.",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "Tell me if my manager is absent, who will approve my leave request?"
+            },
+            {
+                "role": "assistant",
+                "content": "If your manager is absent, your leave request will be automatically routed to your skip-level manager or an assigned proxy if your primary manager has activated their out-of-office delegation.",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "Tell me if my manager is absent, who will approve my leave request?"
+            },
+            {
+                "role": "assistant",
+                "content": "Based on our company's policies, if your manager is absent, your leave request will be automatically routed to your skip-level manager or an assigned proxy if your primary manager has activated their out-of-office delegation.",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "Tell me if my manager is absent, who will approve my leave request?"
+            },
+            {
+                "role": "assistant",
+                "content": "If your manager is absent, your leave request will be automatically routed to your skip-level manager or an assigned proxy if your primary manager has activated their out-of-office delegation.",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "Tell me if my manager is absent, who will approve my leave request?"
+            },
+            {
+                "role": "assistant",
+                "content": "If your manager is absent, your leave request will be automatically routed to your skip-level manager or an assigned proxy if your primary manager has activated their out-of-office delegation.",
+                "sender": "HR Specialist"
+            }
+        ],
+        "session_c74024": [
+            {
+                "role": "assistant",
+                "content": "New workspace session created. How can I assist you today?",
+                "sender": "System"
+            }
+        ],
+        "session_01ab98": [
+            {
+                "role": "assistant",
+                "content": "New workspace session created. How can I assist you today?",
+                "sender": "System"
+            },
+            {
+                "role": "user",
+                "content": "Hello."
+            },
+            {
+                "role": "assistant",
+                "content": "Welcome to the Enterprise General Knowledge & Policy Assistant. I'm here to help answer your questions about company policies, history, and general information. What would you like to know?",
+                "sender": "Knowledge Assistant"
+            },
+            {
+                "role": "user",
+                "content": "Hello, can you plan a business trip to Dubai for me?"
+            },
+            {
+                "role": "assistant",
+                "content": "I'd be happy to help you plan a business trip to Dubai. However, I need to clarify that I'm operating in Travel-only mode, which means I can only assist with existing travel requests or provide information on travel policies. If you'd like to request a business trip to Dubai, I'll need to guide you through the process.\n\nTo get started, could you please provide me with some details about your trip, such as the dates, purpose of the trip, and any specific requirements you may have? This will help me assist you in creating a travel request.\n\n[RENDER_TRAVEL_FORM]",
+                "sender": "Travel Desk"
+            },
+            {
+                "role": "user",
+                "content": "Thank you."
+            },
+            {
+                "role": "assistant",
+                "content": "You're welcome. Is there anything else I can help you with?",
+                "sender": "Knowledge Assistant"
+            },
+            {
+                "role": "user",
+                "content": "\u0915\u094d\u092f\u093e \u092e\u0948\u0902 \u0915\u093f\u0938\u0940 \u0915\u0949\u092b\u0940 \u0938\u094d\u091f\u0949\u092a \u0938\u0947 \u0905\u092a\u0928\u093e \u0915\u093e\u092e \u0915\u0930 \u0938\u0915\u0924\u0940 \u0939\u0942\u0901?"
+            },
+            {
+                "role": "assistant",
+                "content": "\u0915\u0949\u092b\u0940 \u0938\u094d\u091f\u0949\u092a \u092a\u0930 \u0915\u093e\u092e \u0915\u0930\u0928\u093e \u0938\u0902\u092d\u0935 \u0939\u0948, \u0932\u0947\u0915\u093f\u0928 \u0915\u0941\u091b \u0928\u093f\u092f\u092e\u094b\u0902 \u0915\u093e \u092a\u093e\u0932\u0928 \u0915\u0930\u0928\u093e \u0906\u0935\u0936\u094d\u092f\u0915 \u0939\u0948\u0964 \u0939\u092e\u093e\u0930\u0940 \u0915\u0902\u092a\u0928\u0940 \u0915\u0940 \u0928\u0940\u0924\u093f \u0915\u0947 \u0905\u0928\u0941\u0938\u093e\u0930, \u0906\u092a \u0915\u0949\u092b\u0940 \u0938\u094d\u091f\u0949\u092a \u092a\u0930 \u0915\u093e\u092e \u0915\u0930 \u0938\u0915\u0924\u0947 \u0939\u0948\u0902, \u0932\u0947\u0915\u093f\u0928 \u0906\u092a\u0915\u094b \u0938\u0941\u0928\u093f\u0936\u094d\u091a\u093f\u0924 \u0915\u0930\u0928\u093e \u0939\u094b\u0917\u093e \u0915\u093f \u0906\u092a \u0905\u092a\u0928\u0947 \u0921\u093f\u0935\u093e\u0907\u0938 \u0915\u094b \u0938\u0941\u0930\u0915\u094d\u0937\u093f\u0924 \u0924\u0930\u0940\u0915\u0947 \u0938\u0947 \u0915\u0928\u0947\u0915\u094d\u091f \u0915\u0930\u0947\u0902 \u0914\u0930 \u0915\u094b\u0908 \u092d\u0940 \u0938\u0902\u0935\u0947\u0926\u0928\u0936\u0940\u0932 \u091c\u093e\u0928\u0915\u093e\u0930\u0940 \u0928 \u0938\u093e\u091d\u093e \u0915\u0930\u0947\u0902\u0964 \u0907\u0938\u0915\u0947 \u0905\u0932\u093e\u0935\u093e, \u0906\u092a\u0915\u094b \u0939\u092e\u093e\u0930\u0947 \u0915\u094b\u0921 \u0911\u092b \u0915\u0902\u0921\u0915\u094d\u091f \u0914\u0930 \u0921\u0947\u091f\u093e \u092a\u094d\u0930\u093e\u0907\u0935\u0947\u0938\u0940 \u092a\u0949\u0932\u093f\u0938\u0940 \u0915\u093e \u092a\u093e\u0932\u0928 \u0915\u0930\u0928\u093e \u0939\u094b\u0917\u093e\u0964\n\n\u092f\u0939\u093e\u0901 \u0915\u0941\u091b \u092e\u0939\u0924\u094d\u0935\u092a\u0942\u0930\u094d\u0923 \u092c\u093f\u0902\u0926\u0941 \u0939\u0948\u0902 \u091c\u093f\u0928\u0915\u093e \u092a\u093e\u0932\u0928 \u0915\u0930\u0928\u093e \u0906\u0935\u0936\u094d\u092f\u0915 \u0939\u0948:\n\n* \u0905\u092a\u0928\u0947 \u0921\u093f\u0935\u093e\u0907\u0938 \u0915\u094b \u0938\u0941\u0930\u0915\u094d\u0937\u093f\u0924 \u0924\u0930\u0940\u0915\u0947 \u0938\u0947 \u0915\u0928\u0947\u0915\u094d\u091f \u0915\u0930\u0947\u0902 \u0914\u0930 \u0915\u094b\u0908 \u092d\u0940 \u0938\u0902\u0935\u0947\u0926\u0928\u0936\u0940\u0932 \u091c\u093e\u0928\u0915\u093e\u0930\u0940 \u0928 \u0938\u093e\u091d\u093e \u0915\u0930\u0947\u0902\u0964\n* \u0939\u092e\u093e\u0930\u0947 \u0915\u094b\u0921 \u0911\u092b \u0915\u0902\u0921\u0915\u094d\u091f \u0914\u0930 \u0921\u0947\u091f\u093e \u092a\u094d\u0930\u093e\u0907\u0935\u0947\u0938\u0940 \u092a\u0949\u0932\u093f\u0938\u0940 \u0915\u093e \u092a\u093e\u0932\u0928 \u0915\u0930\u0947\u0902\u0964\n* \u0915\u094b\u0908 \u092d\u0940 \u0938\u0902\u0935\u0947\u0926\u0928\u0936\u0940\u0932 \u091c\u093e\u0928\u0915\u093e\u0930\u0940 \u0928 \u0938\u093e\u091d\u093e \u0915\u0930\u0947\u0902 \u0914\u0930 \u0905\u092a\u0928\u0947 \u0921\u093f\u0935\u093e\u0907\u0938 \u0915\u094b \u0938\u0941\u0930\u0915\u094d\u0937\u093f\u0924 \u0924\u0930\u0940\u0915\u0947 \u0938\u0947 \u0915\u0928\u0947\u0915\u094d\u091f \u0915\u0930\u0947\u0902\u0964",
+                "sender": "Knowledge Assistant"
             }
         ]
     },
@@ -152,6 +425,16 @@
                 "role": "assistant",
                 "content": "To submit a formal leave request, you'll need to provide the following details:\n\n* Employee ID: `EMP102`\n* Leave Type: \n* Start Date: \n* End Date: \n* Reason for Leave: \n\nPlease provide the required information, and I'll guide you through the process.\n\n[RENDER_LEAVE_FORM]",
                 "sender": "HR Specialist"
+            },
+            {
+                "role": "assistant",
+                "content": "Hello! I'm Aiden, your enterprise voice assistant. How can I help you today?",
+                "sender": "Aiden (Voice)"
+            },
+            {
+                "role": "assistant",
+                "content": "Hello! I'm Aiden, your enterprise voice assistant. How can I help you today?",
+                "sender": "Aiden (Voice)"
             }
         ],
         "session_7665c9": [

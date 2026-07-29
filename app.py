@@ -85,7 +85,7 @@ footer { visibility: hidden; }
 
 html, body { font-family: 'Inter', sans-serif !important; color: #0F172A !important; }
 [data-testid="stAppViewContainer"] { background-color: #F8FAFC !important; }
-.block-container { padding: 0.2rem 2.5rem 1rem 2.5rem !important; max-width: 1500px; }
+.block-container { padding: 0.2rem 2.5rem 6rem 2.5rem !important; max-width: 1500px; }
 
 /* MAIN HEADER */
 .header-card {
@@ -95,7 +95,6 @@ html, body { font-family: 'Inter', sans-serif !important; color: #0F172A !import
     align-items: center !important; box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
     margin-bottom: 15px !important;
 }
-/* Highlighted Gradient Header */
 .header-title-gradient { 
     font-size: 26px !important; 
     font-weight: 800 !important; 
@@ -122,48 +121,22 @@ html, body { font-family: 'Inter', sans-serif !important; color: #0F172A !import
 [data-testid="stSidebar"] { background-color: #FFFFFF !important; border-right: 1px solid #E2E8F0 !important; }
 [data-testid="stSidebarContent"] { background-color: #FFFFFF !important; }
 
-/* HIGHLIGHTED EMPLOYEE DROPDOWN */
 [data-testid="stSidebar"] div[data-baseweb="select"] > div { 
     background: #EFF6FF !important; 
     border: 2px solid #93C5FD !important; 
     border-radius: 10px !important; 
     box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1) !important;
-    transition: all 0.3s ease !important;
-}
-[data-testid="stSidebar"] div[data-baseweb="select"] > div:hover {
-    border-color: #3B82F6 !important;
-    box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2) !important;
 }
 
-/* GENERAL SIDEBAR BUTTONS (New Conversation, Scan) */
 [data-testid="stSidebar"] .stButton>button {
     height: 44px; border-radius: 10px; font-weight: 600; text-align: center;
     background: #2563EB !important; color: #FFFFFF !important; border: 1px solid #1D4ED8 !important;
-    transition: all 0.2s ease !important;
 }
 [data-testid="stSidebar"] .stButton>button:hover { background: #1D4ED8 !important; border-color: #1E3A8A !important; }
 
-/* SPECIFIC CHAT SESSION STYLES */
-.active-session-wrapper button {
-    background: #1E3A8A !important; border-left: 4px solid #60A5FA !important;
-    color: #FFFFFF !important; font-weight: 600 !important; text-align: left !important; padding-left: 16px !important;
-}
-.inactive-session-wrapper button {
-    background: #F8FAFC !important; border: 1px solid #E2E8F0 !important; border-left: 4px solid #CBD5E1 !important;
-    color: #334155 !important; font-weight: 500 !important; text-align: left !important; padding-left: 16px !important;
-}
-.inactive-session-wrapper button:hover {
-    background: #EFF6FF !important; border-left-color: #93C5FD !important; color: #1E3A8A !important;
-}
-
-/* DELETE BUTTON STYLING */
-.del-btn-wrapper button {
-    background: #FEF2F2 !important; border: 1px solid #FECACA !important; color: #DC2626 !important;
-    text-align: center !important; padding-left: 0 !important;
-}
-.del-btn-wrapper button:hover {
-    background: #FEE2E2 !important; border-color: #F87171 !important;
-}
+.active-session-wrapper button { background: #1E3A8A !important; border-left: 4px solid #60A5FA !important; color: #FFFFFF !important; font-weight: 600 !important; text-align: left !important; padding-left: 16px !important; }
+.inactive-session-wrapper button { background: #F8FAFC !important; border: 1px solid #E2E8F0 !important; border-left: 4px solid #CBD5E1 !important; color: #334155 !important; font-weight: 500 !important; text-align: left !important; padding-left: 16px !important; }
+.del-btn-wrapper button { background: #FEF2F2 !important; border: 1px solid #FECACA !important; color: #DC2626 !important; text-align: center !important; }
 
 .card {
     background: #FFFFFF !important; border: 1px solid rgba(241, 245, 249, 0.8) !important;
@@ -171,26 +144,6 @@ html, body { font-family: 'Inter', sans-serif !important; color: #0F172A !import
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05) !important; margin-bottom: 20px !important;
 }
 .card-sub { font-size: 13px; color: #64748B; margin-bottom: 15px; }
-
-.chat-header-card {
-    background: #FFFFFF !important; border: 1px solid rgba(241, 245, 249, 0.8) !important;
-    border-radius: 18px !important; padding: 18px 24px !important;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.03) !important;
-    display: flex !important; justify-content: space-between !important;
-    align-items: center !important; margin-bottom: 12px !important;
-}
-.chat-title { font-size: 18px; font-weight: 600; color: #0F172A; }
-.chat-pill {
-    background: #F1F5F9; color: #0F172A; border: 1px solid #E2E8F0;
-    padding: 6px 14px; font-size: 12px; font-weight: 600; border-radius: 999px;
-}
-
-/* MAIN BODY BUTTONS (Start/Stop Voice, Forms) */
-.stButton>button {
-    width: 100%; height: 46px; border: 1px solid #0F172A !important; border-radius: 10px !important;
-    background: #0F172A !important; color: #FFFFFF !important; font-weight: 600 !important; font-size: 14px !important;
-}
-.stButton>button:hover { background: #1E293B !important; transform: translateY(-1px) !important; }
 
 [data-testid="stChatMessage"] {
     margin-top: 4px !important; margin-bottom: 8px !important; padding: 14px 18px !important;
@@ -206,7 +159,25 @@ html, body { font-family: 'Inter', sans-serif !important; color: #0F172A !import
     border: 1px solid #E2E8F0 !important; border-radius: 18px 18px 18px 4px !important;
 }
 
-[data-testid="stChatInput"] { background: #FFFFFF !important; border: 1px solid #E2E8F0 !important; border-radius: 14px !important; padding: 6px 12px !important; margin-top: 10px !important; }
+/* ============================================================ */
+/* NEW: FLOATING PILL CHAT INPUT CSS */
+/* ============================================================ */
+[data-testid="stBottomBlockContainer"] {
+    background: transparent !important; /* Remove solid white block */
+    padding-bottom: 20px !important;
+}
+[data-testid="stChatInput"] { 
+    background: #FFFFFF !important; 
+    border: 1px solid #E2E8F0 !important; 
+    border-radius: 50px !important; /* Roundish Pill */
+    padding: 6px 16px !important; 
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.15) !important; /* Floating shadow */
+    margin-bottom: 20px !important;
+    max-width: 900px !important; /* Prevent it from being too overwhelmingly wide */
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
 .ai-banner { height: 70px; border-radius: 12px; background: #F8FAFC; border: 1px solid #E2E8F0; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 600; color: #0F172A; }
 .ai-avatar { margin-top: -35px; display: flex; justify-content: center; margin-bottom: 18px; }
 .ai-avatar img { width: 110px; height: 110px; object-fit: cover; border-radius: 999px; border: 3px solid #FFFFFF !important; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important; }
@@ -237,10 +208,14 @@ if "active_user" not in st.session_state:
     st.session_state.active_user = "EMP101"
 if "current_thread_id" not in st.session_state:
     st.session_state.current_thread_id = "session_001"
-if "voice_connected" not in st.session_state:
-    st.session_state.voice_connected = False
-if "livekit_token" not in st.session_state:
-    st.session_state.livekit_token = None
+if "autoplay_audio" not in st.session_state:
+    st.session_state.autoplay_audio = None
+if "last_audio_hash" not in st.session_state:
+    st.session_state.last_audio_hash = None
+
+# NEW LOGIC FOR WORKSPACE VIEW TOGGLE (Avoids Widget Conflict)
+if "current_workspace" not in st.session_state:
+    st.session_state.current_workspace = "AI Conversation Hub"
 
 all_sessions = load_all_sessions()
 user_id = st.session_state.active_user
@@ -286,11 +261,19 @@ with st.sidebar:
 
     st.markdown("---")
     
+    # Callback to handle radio changes safely
+    def update_workspace_from_radio():
+        st.session_state.current_workspace = st.session_state._workspace_radio
+
+    options = ["AI Conversation Hub", "360 Employee Dashboard"]
+    radio_index = options.index(st.session_state.current_workspace)
+
     workspace_view = st.radio(
         "Workspace View:",
-        ["AI Conversation Hub", "360 Employee Dashboard"],
-        index=0,
-        key="workspace_view"
+        options,
+        index=radio_index,
+        key="_workspace_radio",
+        on_change=update_workspace_from_radio
     )
     
     st.markdown("---")
@@ -354,8 +337,15 @@ with st.sidebar:
 
     st.markdown("---")
     
+    # ----------------------------------------------------
+    # Toggles the Workspace View back and forth
+    # ----------------------------------------------------
     if st.button("Scan Proactive Events", use_container_width=True):
-        st.info("Proactive Event Scanner & Dashboard will be enabled in Phase 2!")
+        if st.session_state.current_workspace == "AI Conversation Hub":
+            st.session_state.current_workspace = "360 Employee Dashboard"
+        else:
+            st.session_state.current_workspace = "AI Conversation Hub"
+        st.rerun()
 
     st.markdown("<br>", unsafe_allow_html=True)
     st.caption("EnterpriseAssist AI\nVersion 2.0")
@@ -368,7 +358,6 @@ def render_employee_dashboard(emp_id: str):
     st.caption("Consolidated view of your proactive alerts, leave quotas, helpdesk tickets, and travel itineraries.")
     st.markdown("---")
 
-    # 1. PROACTIVE ALERTS SECTION (events.json)
     events = []
     if os.path.exists("events.json"):
         try:
@@ -399,7 +388,6 @@ def render_employee_dashboard(emp_id: str):
         </div>
         """, unsafe_allow_html=True)
 
-    # Load employee balances and active requests
     emp_data = {}
     if os.path.exists("employees.json"):
         try:
@@ -414,19 +402,13 @@ def render_employee_dashboard(emp_id: str):
                 reqs = [r for r in json.load(f) if r.get("emp_id", "").upper() == emp_id.upper()]
         except Exception: pass
 
-    # 2. LEAVE BALANCES QUOTA CARDS
     balances = emp_data.get("leave_balance", {"casual": 0, "sick": 0, "annual": 0})
     col1, col2, col3 = st.columns(3)
-    with col1:
-        st.markdown(f'<div class="card" style="text-align:center;"><div class="card-sub">🟢 Casual Leave</div><div style="font-size:24px; font-weight:700; color:#0F172A;">{balances.get("casual", 0)} Days</div></div>', unsafe_allow_html=True)
-    with col2:
-        st.markdown(f'<div class="card" style="text-align:center;"><div class="card-sub">🟡 Sick Leave</div><div style="font-size:24px; font-weight:700; color:#0F172A;">{balances.get("sick", 0)} Days</div></div>', unsafe_allow_html=True)
-    with col3:
-        st.markdown(f'<div class="card" style="text-align:center;"><div class="card-sub">🔵 Annual Leave</div><div style="font-size:24px; font-weight:700; color:#0F172A;">{balances.get("annual", 0)} Days</div></div>', unsafe_allow_html=True)
+    with col1: st.markdown(f'<div class="card" style="text-align:center;"><div class="card-sub">🟢 Casual Leave</div><div style="font-size:24px; font-weight:700; color:#0F172A;">{balances.get("casual", 0)} Days</div></div>', unsafe_allow_html=True)
+    with col2: st.markdown(f'<div class="card" style="text-align:center;"><div class="card-sub">🟡 Sick Leave</div><div style="font-size:24px; font-weight:700; color:#0F172A;">{balances.get("sick", 0)} Days</div></div>', unsafe_allow_html=True)
+    with col3: st.markdown(f'<div class="card" style="text-align:center;"><div class="card-sub">🔵 Annual Leave</div><div style="font-size:24px; font-weight:700; color:#0F172A;">{balances.get("annual", 0)} Days</div></div>', unsafe_allow_html=True)
 
-    # 3. ACTIVE WORKFLOW REQUESTS TABBED VIEW
     t_leave, t_it, t_fin, t_trv = st.tabs(["📝 Leave Requests", "🎟️ IT Tickets", "💸 Expense Claims", "✈️ Travel Plans"])
-    
     with t_leave:
         l_reqs = [r for r in reqs if r.get("type") == "LEAVE"]
         if l_reqs:
@@ -434,7 +416,6 @@ def render_employee_dashboard(emp_id: str):
                 st.markdown(f"**[{r['req_id']}]** `{r['leave_type'].upper()}` Leave ({r['start_date']} to `{r['end_date']}`) — *Status:* `{r['status']}`")
                 st.divider()
         else: st.caption("No active leave requests found.")
-
     with t_it:
         it_reqs = [r for r in reqs if r.get("type") == "IT_TICKET"]
         if it_reqs:
@@ -442,7 +423,6 @@ def render_employee_dashboard(emp_id: str):
                 st.markdown(f"**[{r['req_id']}]** `{r['category'].upper()}` ({r['urgency']} Priority): {r['summary']} — *Status:* `{r['status']}`")
                 st.divider()
         else: st.caption("No active IT support tickets found.")
-
     with t_fin:
         f_reqs = [r for r in reqs if r.get("type") == "EXPENSE"]
         if f_reqs:
@@ -450,7 +430,6 @@ def render_employee_dashboard(emp_id: str):
                 st.markdown(f"**[{r['req_id']}]** `{r['category'].upper()}` - {r['report_name']}: **{r['currency']} {r['amount']}** — *Status:* `{r['status']}`")
                 st.divider()
         else: st.caption("No active expense claims found.")
-
     with t_trv:
         trv_reqs = [r for r in reqs if r.get("type") == "TRAVEL"]
         if trv_reqs:
@@ -460,13 +439,12 @@ def render_employee_dashboard(emp_id: str):
         else: st.caption("No business travel itineraries found.")
 
 # ============================================================
-# Main Layout
+# Main Layout (Columns)
 # ============================================================
 left_col, right_col = st.columns([1, 2], gap="large")
 
 with left_col:
     ai_image_url = "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=900"
-    
     st.markdown(f"""
     <div class="card" style="margin-bottom: 12px;">
         <div class="ai-banner">Aiden</div>
@@ -475,108 +453,50 @@ with left_col:
     </div>
     """, unsafe_allow_html=True)
 
-    room_name = f"room-{st.session_state.active_user}"
-    col1, col2 = st.columns(2)
-    with col1:
-        if st.button("Start Voice", use_container_width=True, key="voice_start"):
-            try:
-                response = requests.post(
-                    f"{FASTAPI_URL}/get-token",
-                    json={"employee_id": st.session_state.active_user, "room_name": room_name},
-                    timeout=5
-                ).json()
-                
-                st.session_state.livekit_token = response.get("token")
-                st.session_state.voice_connected = True
-                st.rerun()
-            except Exception:
-                st.error("⚠️ Server offline. Run server.py first!")
-
-    with col2:
-        if st.button("Stop Voice", use_container_width=True, key="voice_stop"):
-            st.session_state.livekit_token = None
-            st.session_state.voice_connected = False
-            st.rerun()
-
-    # Interactive WebRTC Widget that forces Browser Microphone Permission Dialog
-    if st.session_state.voice_connected and st.session_state.livekit_token:
-        livekit_url = os.getenv("LIVEKIT_URL", "")
+    audio_bytes = st.audio_input("🎙️ Ask a question", label_visibility="collapsed")
+    
+    if audio_bytes:
+        current_audio_hash = hash(audio_bytes.getvalue())
         
-        webrtc_html = f"""
-        <script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
-        <div style="background: #0F172A; color: white; padding: 14px; border-radius: 12px; text-align: center; font-family: 'Inter', sans-serif; border: 1px solid #334155; margin-top: 10px;">
-            <div id="statusText" style="margin-bottom: 10px; font-size: 13px; font-weight: 500; color: #F8FAFC;">
-                🟡 Voice Room Ready. Click below to unmute!
-            </div>
-            <button id="micBtn" onclick="activateVoice()" style="background: #10B981; color: white; border: none; padding: 10px 18px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 100%; transition: 0.2s;">
-                🎙️ Click to Activate Microphone & Audio
-            </button>
-        </div>
-        <script>
-        let currentRoom = null;
-        
-        async function activateVoice() {{
-            const btn = document.getElementById('micBtn');
-            const status = document.getElementById('statusText');
-            btn.innerHTML = "⏳ Connecting to Cloud...";
+        if st.session_state.last_audio_hash != current_audio_hash:
+            st.session_state.last_audio_hash = current_audio_hash
             
-            try {{
-                currentRoom = new LivekitClient.Room({{ adaptiveStream: true, dynacast: true }});
-                
-                // Attach remote assistant audio to the browser document so you can hear Aiden speak!
-                currentRoom.on(LivekitClient.RoomEvent.TrackSubscribed, (track, publication, participant) => {{
-                    if (track.kind === LivekitClient.Track.Kind.Audio) {{
-                        const element = track.attach();
-                        document.body.appendChild(element);
-                    }}
-                }});
-                
-                await currentRoom.connect("{livekit_url}", "{st.session_state.livekit_token}");
-                
-                // Explicit user click forces Chrome/Edge to ask for Mic Permission
-                await currentRoom.localParticipant.enableMicrophone();
-                
-                status.innerHTML = "🟢 Live Voice Active (Speak freely!)";
-                status.style.color = "#10B981";
-                btn.style.display = "none";
-            }} catch (err) {{
-                status.innerHTML = "❌ Mic Blocked or Error. Check browser permissions!";
-                status.style.color = "#EF4444";
-                btn.innerHTML = "🔄 Retry Microphone";
-                console.error("WebRTC Error:", err);
-            }}
-        }}
-        
-        window.addEventListener("beforeunload", () => {{
-            if (currentRoom) {{ currentRoom.disconnect(); }}
-        }});
-        </script>
-        """
-        st.components.v1.html(webrtc_html, height=110)
-    elif st.session_state.voice_connected == False:
-        st.markdown("<div style='margin-top: 10px; font-size: 13px; color: #64748B; text-align: center;'>Voice channel is disconnected.</div>", unsafe_allow_html=True)
+            with st.spinner("Listening and analyzing voice..."):
+                try:
+                    files = {"audio_file": ("audio.wav", audio_bytes, "audio/wav")}
+                    data = {
+                        "employee_id": st.session_state.active_user,
+                        "thread_id": st.session_state.current_thread_id
+                    }
+                    
+                    res = requests.post(f"{FASTAPI_URL}/voice-chat", files=files, data=data).json()
+                    
+                    current_messages = all_sessions[st.session_state.active_user][st.session_state.current_thread_id]
+                    current_messages.append({"role": "user", "content": res["user_text"]})
+                    current_messages.append({"role": "assistant", "content": res["answer_text"], "sender": res["sender"]})
+                    save_all_sessions(all_sessions)
+                    
+                    if res.get("audio_base64"):
+                        st.session_state.autoplay_audio = res["audio_base64"]
+                    
+                    st.rerun()
+                    
+                except Exception as e:
+                    st.error("⚠️ Failed to process voice. Is server.py running?")
 
+    # Visible Audio Playback beneath the mic (Only renders if an audio response exists)
+    if st.session_state.get("autoplay_audio"):
+        import base64
+        b64_audio = st.session_state.autoplay_audio
+        tts_audio = base64.b64decode(b64_audio)
+        st.audio(tts_audio, format="audio/mp3", autoplay=True)
 
-# Right Panel (Conversation Panel or 360 Dashboard)
 with right_col:
-    if st.session_state.get("workspace_view", "AI Conversation Hub") == "360 Employee Dashboard":
+    if st.session_state.current_workspace == "360 Employee Dashboard":
         render_employee_dashboard(user_id)
     else:
-        st.markdown(f"""
-        <div class="chat-header-card">
-            <div>
-                <div class="chat-title">Enterprise Conversation</div>
-                <div style="color:#64748B; font-size:13px; margin-top:4px;">
-                    Current Thread: <span style="color:#0F172A; font-weight:600;">{st.session_state.current_thread_id}</span>
-                </div>
-            </div>
-            <div class="chat-pill">Aiden Active</div>
-        </div>
-        """, unsafe_allow_html=True)
-
         current_messages = all_sessions[user_id][st.session_state.current_thread_id]
-        
-        chat_container = st.container(height=550, border=False)
+        chat_container = st.container(height=650, border=False)
 
         with chat_container:
             for idx, msg in enumerate(current_messages):
@@ -645,6 +565,7 @@ with right_col:
                                 with col_a: f_curr = st.selectbox("Currency", ["USD", "EUR", "GBP", "INR"])
                                 with col_b: f_amt = st.number_input("Amount", min_value=1.0, value=50.0, step=5.0)
                             f_desc = st.text_area("Business Justification & Details", placeholder="Provide business reason and list covered items...")
+                            st.caption("📎 Note: Claims over $25 USD require digital receipt attachment per Global Expense Policy.")
                             if st.form_submit_button("🚀 Submit Expense Claim", use_container_width=True):
                                 if not f_name.strip() or not f_desc.strip(): st.error("Please complete report name and business justification.")
                                 else:
@@ -684,41 +605,41 @@ with right_col:
                         st.markdown(content + sender_badge)
 
 # ============================================================
-# Chat Backend Processing via LangGraph
+# Text Chat Input Processing (Full-Width at Bottom!)
 # ============================================================
-if user_input := st.chat_input("Ask Aiden anything..."):
-    current_messages.append({"role": "user", "content": user_input})
-    save_all_sessions(all_sessions)
-    
-    with chat_container:
-        with st.chat_message("user"):
-            st.markdown(user_input)
+if st.session_state.current_workspace != "360 Employee Dashboard":
+    if user_input := st.chat_input("Ask Aiden anything..."):
+        current_messages = all_sessions[user_id][st.session_state.current_thread_id]
+        current_messages.append({"role": "user", "content": user_input})
+        save_all_sessions(all_sessions)
         
-        with st.chat_message("assistant"):
-            with st.spinner("Analyzing request & routing to specialist..."):
-                try:
-                    state_messages = []
-                    for m in current_messages:
-                        if m["role"] == "user":
-                            state_messages.append(HumanMessage(content=m["content"]))
-                        elif m["role"] == "assistant" and m.get("sender") != "System":
-                            state_messages.append(AIMessage(content=m["content"]))
+        with chat_container:
+            with st.chat_message("user"):
+                st.markdown(user_input)
+                
+            with st.chat_message("assistant"):
+                with st.spinner("Analyzing request & routing to specialist..."):
+                    try:
+                        state_messages = []
+                        for m in current_messages:
+                            if m["role"] == "user":
+                                state_messages.append(HumanMessage(content=m["content"]))
+                            elif m["role"] == "assistant" and m.get("sender") != "System":
+                                state_messages.append(AIMessage(content=m["content"]))
 
-                    graph_state = {"messages": state_messages, "employee_id": user_id}
-                    result = asyncio.run(master_graph.ainvoke(graph_state))
-                    
-                    last_msg = result["messages"][-1]
-                    sender_name = result.get("sender", "Assistant")
-                    
-                    st.markdown(f"{last_msg.content} `[{sender_name}]`")
-                    current_messages.append({"role": "assistant", "content": last_msg.content, "sender": sender_name})
-                    save_all_sessions(all_sessions)
-                    
-                    if any(tok in last_msg.content for tok in ["[RENDER_LEAVE_FORM]", "[RENDER_TICKET_FORM]", "[RENDER_EXPENSE_FORM]", "[RENDER_TRAVEL_FORM]"]):
-                        st.rerun()
+                        graph_state = {"messages": state_messages, "employee_id": user_id}
+                        result = asyncio.run(master_graph.ainvoke(graph_state))
                         
-                except Exception as e:
-                    err = f"❌ Backend Processing Error: {str(e)}"
-                    st.error(err)
-                    current_messages.append({"role": "assistant", "content": err, "sender": "System"})
-                    save_all_sessions(all_sessions)
+                        last_msg = result["messages"][-1]
+                        sender_name = result.get("sender", "Assistant")
+                        
+                        current_messages.append({"role": "assistant", "content": last_msg.content, "sender": sender_name})
+                        save_all_sessions(all_sessions)
+                        st.rerun()
+                            
+                    except Exception as e:
+                        err = f"Backend Processing Notice: I encountered a formatting error verifying that request. Can you please rephrase?"
+                        st.error(f"System Log: {str(e)}")
+                        current_messages.append({"role": "assistant", "content": err, "sender": "System"})
+                        save_all_sessions(all_sessions)
+                        st.rerun()
