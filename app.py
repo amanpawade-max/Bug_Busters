@@ -18,7 +18,7 @@ from tools.travel_tools import submit_travel_request
 
 load_dotenv()
 
-FASTAPI_URL = "http://localhost:8000"
+FASTAPI_URL = "https://bug-busters-fi1s.onrender.com"
 
 st.set_page_config(
     page_title="EnterpriseAssist Portal",
