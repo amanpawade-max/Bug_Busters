@@ -1,6 +1,6 @@
 {
     "EMP101": {
-        "session_3438ce": [
+        "session_9ac26a": [
             {
                 "role": "assistant",
                 "content": "Hello! I'm Aiden, your Enterprise AI Assistant.\n\nI can help with HR leave balances, IT Support tickets, Finance expense claims, Business Travel itineraries, and enterprise policies.\n\nHow can I assist you today?",
@@ -8,21 +8,64 @@
             },
             {
                 "role": "user",
-                "content": "i want to track my leave  applications"
+                "content": "how won the ipl 2025"
             },
             {
                 "role": "assistant",
-                "content": "### \ud83d\udccb Leave Balance for `EMP101`:\n\n* **SICK**: 5 days\n* **CASUAL**: 10 days\n* **ANNUAL**: 15 days",
+                "content": "I'm not aware of any information about the IPL 2025 as my knowledge cutoff is December 2023.",
+                "sender": "Knowledge Assistant"
+            },
+            {
+                "role": "user",
+                "content": "who won the ipl 2022"
+            },
+            {
+                "role": "assistant",
+                "content": "The Gujarat Titans won the IPL 2022.",
+                "sender": "Travel Desk"
+            },
+            {
+                "role": "user",
+                "content": "how many leaves i have"
+            },
+            {
+                "role": "assistant",
+                "content": "\u274c Backend Processing Error: Error code: 400 - {'error': {'message': \"Failed to call a function. Please adjust your prompt. See 'failed_generation' for more details.\", 'type': 'invalid_request_error', 'code': 'tool_use_failed', 'failed_generation': '<function=get_leave_balance>{\"emp_id\": \"EMP101\"}'}}",
+                "sender": "System"
+            },
+            {
+                "role": "user",
+                "content": "how many leaves do i have"
+            },
+            {
+                "role": "assistant",
+                "content": "### \ud83d\udcca Leave Balances for John Doe (`EMP101`)\n\n* \ud83d\udfe2 **Casual Leave:** `1 days remaining`\n* \ud83d\udfe1 **Sick Leave:** `5 days remaining`\n* \ud83d\udd35 **Annual Leave:** `8 days remaining`",
                 "sender": "HR Specialist"
             },
             {
                 "role": "user",
-                "content": "i want to track my leave requests"
+                "content": "How long does it take to receive the funds once marked \"Processing\"?"
             },
             {
                 "role": "assistant",
-                "content": "### \ud83d\udccb Active Leave Requests for `EMP101`:\n\n* **SICK**: `2026-07-29` to `2026-07-30` | Status: `Pending Manager Approval`\n* **CASUAL**: `2026-07-28` to `2026-07-28` | Status: `Pending Manager Approval`\n* **ANNUAL**: `2026-07-30` to `2026-07-31` | Status: `Pending Manager Approval`",
+                "content": "It takes approximately 7-10 business days to receive the funds once marked \"Processing\".",
+                "sender": "Finance Assistant"
+            },
+            {
+                "role": "user",
+                "content": "if my manager is absentqho will approve my leave request ?"
+            },
+            {
+                "role": "assistant",
+                "content": "If your manager is absent, your leave request will be automatically routed to your skip-level manager or an assigned proxy if your primary manager has activated their out-of-office delegation.",
                 "sender": "HR Specialist"
+            }
+        ],
+        "session_cfe7d8": [
+            {
+                "role": "assistant",
+                "content": "New workspace session created. How can I assist you today?",
+                "sender": "System"
             }
         ]
     },
@@ -91,9 +134,34 @@
                 "role": "assistant",
                 "content": "### \ud83d\udcca Leave Balances for Sarah Smith (`EMP102`)\n\n* \ud83d\udfe2 **Casual Leave:** `10 days remaining`\n* \ud83d\udfe1 **Sick Leave:** `6 days remaining`\n* \ud83d\udd35 **Annual Leave:** `15 days remaining`",
                 "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "i want to track my leave request"
+            },
+            {
+                "role": "assistant",
+                "content": "### \ud83d\udccb Active Leave Requests for `EMP102`:\n\n* **CASUAL**: `2026-07-29` to `2026-07-31` | Status: `Pending Manager Approval`",
+                "sender": "HR Specialist"
+            },
+            {
+                "role": "user",
+                "content": "i want to apply for leave request"
+            },
+            {
+                "role": "assistant",
+                "content": "To submit a formal leave request, you'll need to provide the following details:\n\n* Employee ID: `EMP102`\n* Leave Type: \n* Start Date: \n* End Date: \n* Reason for Leave: \n\nPlease provide the required information, and I'll guide you through the process.\n\n[RENDER_LEAVE_FORM]",
+                "sender": "HR Specialist"
             }
         ],
         "session_7665c9": [
+            {
+                "role": "assistant",
+                "content": "New workspace session created. How can I assist you today?",
+                "sender": "System"
+            }
+        ],
+        "session_153736": [
             {
                 "role": "assistant",
                 "content": "New workspace session created. How can I assist you today?",

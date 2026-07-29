@@ -30,7 +30,7 @@ def get_leave_balance(emp_id: str) -> str:
         if emp.get("emp_id", "").upper() == emp_id.upper():
             balances = emp.get("leave_balance", {})
             return (
-                f"### 📊 Leave Balances for {emp.get('name')} (`{emp_id}`)\n\n"
+                f"###  Leave Balances for {emp.get('name')} (`{emp_id}`)\n\n"
                 f"* 🟢 **Casual Leave:** `{balances.get('casual', 0)} days remaining`\n"
                 f"* 🟡 **Sick Leave:** `{balances.get('sick', 0)} days remaining`\n"
                 f"* 🔵 **Annual Leave:** `{balances.get('annual', 0)} days remaining`"

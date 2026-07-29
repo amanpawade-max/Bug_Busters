@@ -8,6 +8,7 @@ import datetime
 import streamlit as st
 from dotenv import load_dotenv
 
+# --- BACKEND IMPORTS RESTORED ---
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage, ToolMessage
 from agents.graph import build_master_graph
 from tools.hr_tools import submit_leave_request
@@ -32,7 +33,6 @@ st.set_page_config(
 SESSIONS_FILE = "sessions.json"
 
 def load_all_sessions() -> dict:
-    """Loads all chat threads for all users from local disk."""
     if not os.path.exists(SESSIONS_FILE):
         return {}
     try:
@@ -42,7 +42,6 @@ def load_all_sessions() -> dict:
         return {}
 
 def save_all_sessions(data: dict):
-    """Saves chat threads permanently to local disk."""
     with open(SESSIONS_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4)
 
@@ -77,7 +76,7 @@ master_graph = get_graph()
 # ============================================================
 st.markdown("""
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 #MainMenu { visibility: hidden; }
@@ -87,8 +86,8 @@ footer { visibility: hidden; }
 html, body { font-family: 'Inter', sans-serif !important; color: #0F172A !important; }
 [data-testid="stAppViewContainer"] { background-color: #F8FAFC !important; }
 .block-container { padding: 0.2rem 2.5rem 1rem 2.5rem !important; max-width: 1500px; }
-h1, h2, h3, h4, h5, h6 { color: #0F172A !important; font-weight: 600 !important; }
 
+/* MAIN HEADER */
 .header-card {
     background: #FFFFFF !important; border: 1px solid #E2E8F0 !important;
     padding: 16px 32px !important; border-radius: 16px !important;
@@ -96,7 +95,14 @@ h1, h2, h3, h4, h5, h6 { color: #0F172A !important; font-weight: 600 !important;
     align-items: center !important; box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
     margin-bottom: 15px !important;
 }
-.header-title { font-size: 20px !important; font-weight: 700 !important; color: #0F172A !important; }
+/* Highlighted Gradient Header */
+.header-title-gradient { 
+    font-size: 26px !important; 
+    font-weight: 800 !important; 
+    background: linear-gradient(90deg, #1E3A8A 0%, #3B82F6 100%); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+}
 .online-pill {
     background: #F1F5F9 !important; border: 1px solid #E2E8F0 !important;
     padding: 6px 14px !important; border-radius: 999px !important; font-weight: 600 !important;
@@ -115,16 +121,48 @@ h1, h2, h3, h4, h5, h6 { color: #0F172A !important; font-weight: 600 !important;
 
 [data-testid="stSidebar"] { background-color: #FFFFFF !important; border-right: 1px solid #E2E8F0 !important; }
 [data-testid="stSidebarContent"] { background-color: #FFFFFF !important; }
-[data-testid="stSidebar"] div[data-baseweb="select"] { background: #F8FAFC !important; border: 1px solid #E2E8F0 !important; border-radius: 10px !important; }
+
+/* HIGHLIGHTED EMPLOYEE DROPDOWN */
+[data-testid="stSidebar"] div[data-baseweb="select"] > div { 
+    background: #EFF6FF !important; 
+    border: 2px solid #93C5FD !important; 
+    border-radius: 10px !important; 
+    box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1) !important;
+    transition: all 0.3s ease !important;
+}
+[data-testid="stSidebar"] div[data-baseweb="select"] > div:hover {
+    border-color: #3B82F6 !important;
+    box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2) !important;
+}
+
+/* GENERAL SIDEBAR BUTTONS (New Conversation, Scan) */
 [data-testid="stSidebar"] .stButton>button {
-    height: 44px; border-radius: 10px; font-weight: 500; text-align: left; padding-left: 16px;
-    background: #FFFFFF !important; color: #0F172A !important; border: 1px solid #E2E8F0 !important;
+    height: 44px; border-radius: 10px; font-weight: 600; text-align: center;
+    background: #2563EB !important; color: #FFFFFF !important; border: 1px solid #1D4ED8 !important;
     transition: all 0.2s ease !important;
 }
-[data-testid="stSidebar"] .stButton>button:hover { background: #F1F5F9 !important; border-color: #94A3B8 !important; }
+[data-testid="stSidebar"] .stButton>button:hover { background: #1D4ED8 !important; border-color: #1E3A8A !important; }
+
+/* SPECIFIC CHAT SESSION STYLES */
 .active-session-wrapper button {
-    background: #FDF8F2 !important; border-left: 4px solid #D97706 !important;
-    color: #78350F !important; font-weight: 600 !important;
+    background: #1E3A8A !important; border-left: 4px solid #60A5FA !important;
+    color: #FFFFFF !important; font-weight: 600 !important; text-align: left !important; padding-left: 16px !important;
+}
+.inactive-session-wrapper button {
+    background: #F8FAFC !important; border: 1px solid #E2E8F0 !important; border-left: 4px solid #CBD5E1 !important;
+    color: #334155 !important; font-weight: 500 !important; text-align: left !important; padding-left: 16px !important;
+}
+.inactive-session-wrapper button:hover {
+    background: #EFF6FF !important; border-left-color: #93C5FD !important; color: #1E3A8A !important;
+}
+
+/* DELETE BUTTON STYLING */
+.del-btn-wrapper button {
+    background: #FEF2F2 !important; border: 1px solid #FECACA !important; color: #DC2626 !important;
+    text-align: center !important; padding-left: 0 !important;
+}
+.del-btn-wrapper button:hover {
+    background: #FEE2E2 !important; border-color: #F87171 !important;
 }
 
 .card {
@@ -132,7 +170,6 @@ h1, h2, h3, h4, h5, h6 { color: #0F172A !important; font-weight: 600 !important;
     border-radius: 18px !important; padding: 24px !important;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05) !important; margin-bottom: 20px !important;
 }
-.card-title { font-size: 16px; font-weight: 600; color: #0F172A; margin-bottom: 8px; }
 .card-sub { font-size: 13px; color: #64748B; margin-bottom: 15px; }
 
 .chat-header-card {
@@ -148,6 +185,7 @@ h1, h2, h3, h4, h5, h6 { color: #0F172A !important; font-weight: 600 !important;
     padding: 6px 14px; font-size: 12px; font-weight: 600; border-radius: 999px;
 }
 
+/* MAIN BODY BUTTONS (Start/Stop Voice, Forms) */
 .stButton>button {
     width: 100%; height: 46px; border: 1px solid #0F172A !important; border-radius: 10px !important;
     background: #0F172A !important; color: #FFFFFF !important; font-weight: 600 !important; font-size: 14px !important;
@@ -180,7 +218,7 @@ h1, h2, h3, h4, h5, h6 { color: #0F172A !important; font-weight: 600 !important;
 
 st.markdown("""
 <div class="header-card">
-    <div class="header-title">EnterpriseAssist</div>
+    <div class="header-title-gradient">Enterprise Assist AI</div>
     <div class="online-pill"><div class="pulsating-dot"></div>Secure Connection</div>
 </div>
 """, unsafe_allow_html=True)
@@ -197,16 +235,13 @@ WELCOME_MESSAGE = (
 
 if "active_user" not in st.session_state:
     st.session_state.active_user = "EMP101"
-
 if "current_thread_id" not in st.session_state:
     st.session_state.current_thread_id = "session_001"
-
 if "voice_connected" not in st.session_state:
     st.session_state.voice_connected = False
 if "livekit_token" not in st.session_state:
     st.session_state.livekit_token = None
 
-# Load persistent storage from disk
 all_sessions = load_all_sessions()
 user_id = st.session_state.active_user
 
@@ -224,9 +259,9 @@ if st.session_state.current_thread_id not in all_sessions[user_id]:
 # ============================================================
 with st.sidebar:
     st.markdown("""
-    <div style="padding-bottom:18px;">
-        <div style="font-size:20px;font-weight:700;color:#0F172A;">EnterpriseAssist</div>
-        <div style="font-size:12px;color:#64748B;">AI Workspace Uplink</div>
+    <div style="padding-bottom:20px;">
+        <div style="font-size:30px; font-weight:800; color:#1E3A8A; background: linear-gradient(90deg, #1E3A8A 0%, #3B82F6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 2px;">Enterprise Assist AI</div>
+        <div style="font-size:15px; color:#64748B; font-weight:600;">AI Workspace Uplink</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -238,7 +273,6 @@ with st.sidebar:
     selected_user_label = st.selectbox("Employee", list(user_options.keys()), label_visibility="collapsed")
     new_user_id = user_options[selected_user_label]
 
-    # Handle User Switch gracefully
     if new_user_id != st.session_state.active_user:
         st.session_state.active_user = new_user_id
         if new_user_id not in all_sessions:
@@ -252,10 +286,9 @@ with st.sidebar:
 
     st.markdown("---")
     
-    # NEW WORKSPACE VIEW TOGGLE
     workspace_view = st.radio(
         "Workspace View:",
-        ["💬 AI Conversation Hub", "📊 360 Employee Dashboard"],
+        ["AI Conversation Hub", "360 Employee Dashboard"],
         index=0,
         key="workspace_view"
     )
@@ -273,54 +306,49 @@ with st.sidebar:
         st.rerun()
 
     st.markdown("---")
-    st.markdown("<h6 style='margin-bottom:10px; font-weight: 600; color:#0F172A;'>Recent Sessions</h6>", unsafe_allow_html=True)
+    st.markdown("<div style='margin-bottom:12px; font-size: 20px; font-weight: 700; color:#0F172A;'>Recent Sessions</div>", unsafe_allow_html=True)
 
-    # Loop through chat sessions with Delete button & Inline Confirmation
     for thread in reversed(list(all_sessions[user_id].keys())):
         active = (thread == st.session_state.current_thread_id)
         label = f"Session {thread.split('_')[-1]} (Active)" if active else f"Session {thread.split('_')[-1]}"
 
-        col_btn, col_del = st.columns([4, 1])
+        col_btn, col_del = st.columns([5, 1.5])
         with col_btn:
             if active:
                 st.markdown("<div class='active-session-wrapper'>", unsafe_allow_html=True)
-                if st.button(label, key=f"thread_{thread}", use_container_width=True):
-                    st.session_state.current_thread_id = thread
-                    st.session_state.confirm_delete_thread = None
-                    st.rerun()
-                st.markdown("</div>", unsafe_allow_html=True)
             else:
-                if st.button(label, key=f"thread_{thread}", use_container_width=True):
-                    st.session_state.current_thread_id = thread
-                    st.session_state.confirm_delete_thread = None
-                    st.rerun()
+                st.markdown("<div class='inactive-session-wrapper'>", unsafe_allow_html=True)
+                
+            if st.button(label, key=f"thread_{thread}", use_container_width=True):
+                st.session_state.current_thread_id = thread
+                st.session_state.confirm_delete_thread = None
+                st.rerun()
+            st.markdown("</div>", unsafe_allow_html=True)
         
         with col_del:
+            st.markdown("<div class='del-btn-wrapper'>", unsafe_allow_html=True)
             if st.button("🗑️", key=f"del_{thread}", help="Delete this chat"):
                 st.session_state.confirm_delete_thread = thread
                 st.rerun()
+            st.markdown("</div>", unsafe_allow_html=True)
 
-        # Inline Confirmation Dialog right beneath the selected thread
         if st.session_state.get("confirm_delete_thread") == thread:
             st.warning("Delete this chat?")
             c_yes, c_no = st.columns(2)
             with c_yes:
-                if st.button("✔️ Yes", key=f"yes_{thread}", use_container_width=True):
+                if st.button("Yes", key=f"yes_{thread}", use_container_width=True):
                     del all_sessions[user_id][thread]
-                    
-                    # If user deleted their last remaining chat, generate a clean new default session!
                     if not all_sessions[user_id]:
                         new_id = f"session_{uuid.uuid4().hex[:6]}"
                         all_sessions[user_id][new_id] = [{"role": "assistant", "content": WELCOME_MESSAGE, "sender": "System"}]
                         st.session_state.current_thread_id = new_id
                     elif st.session_state.current_thread_id == thread:
                         st.session_state.current_thread_id = list(all_sessions[user_id].keys())[0]
-                    
                     st.session_state.confirm_delete_thread = None
                     save_all_sessions(all_sessions)
                     st.rerun()
             with c_no:
-                if st.button("❌ No", key=f"no_{thread}", use_container_width=True):
+                if st.button("No", key=f"no_{thread}", use_container_width=True):
                     st.session_state.confirm_delete_thread = None
                     st.rerun()
 
@@ -438,40 +466,100 @@ left_col, right_col = st.columns([1, 2], gap="large")
 
 with left_col:
     ai_image_url = "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=900"
+    
     st.markdown(f"""
-    <div class="card">
+    <div class="card" style="margin-bottom: 12px;">
         <div class="ai-banner">Aiden</div>
         <div class="ai-avatar"><img src="{ai_image_url}"></div>
         <div style="margin-top:10px; text-align:center;"><span class="listening-badge">Active</span></div>
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("""
-    <div class="card">
-        <div class="card-title">Voice Assistant</div>
-        <div class="card-sub">Establish real-time voice channel.</div>
-    """, unsafe_allow_html=True)
-
     room_name = f"room-{st.session_state.active_user}"
     col1, col2 = st.columns(2)
     with col1:
         if st.button("Start Voice", use_container_width=True, key="voice_start"):
-            st.info("WebRTC Voice pipeline will be wired in Phase 3!")
+            try:
+                response = requests.post(
+                    f"{FASTAPI_URL}/get-token",
+                    json={"employee_id": st.session_state.active_user, "room_name": room_name},
+                    timeout=5
+                ).json()
+                
+                st.session_state.livekit_token = response.get("token")
+                st.session_state.voice_connected = True
+                st.rerun()
+            except Exception:
+                st.error("⚠️ Server offline. Run server.py first!")
+
     with col2:
         if st.button("Stop Voice", use_container_width=True, key="voice_stop"):
+            st.session_state.livekit_token = None
             st.session_state.voice_connected = False
             st.rerun()
 
-    if st.session_state.voice_connected:
-        st.success("Connected to Live Voice")
-    else:
-        st.info("Voice channel is disconnected.")
-    st.markdown("</div>", unsafe_allow_html=True)
+    # Interactive WebRTC Widget that forces Browser Microphone Permission Dialog
+    if st.session_state.voice_connected and st.session_state.livekit_token:
+        livekit_url = os.getenv("LIVEKIT_URL", "")
+        
+        webrtc_html = f"""
+        <script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
+        <div style="background: #0F172A; color: white; padding: 14px; border-radius: 12px; text-align: center; font-family: 'Inter', sans-serif; border: 1px solid #334155; margin-top: 10px;">
+            <div id="statusText" style="margin-bottom: 10px; font-size: 13px; font-weight: 500; color: #F8FAFC;">
+                🟡 Voice Room Ready. Click below to unmute!
+            </div>
+            <button id="micBtn" onclick="activateVoice()" style="background: #10B981; color: white; border: none; padding: 10px 18px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 100%; transition: 0.2s;">
+                🎙️ Click to Activate Microphone & Audio
+            </button>
+        </div>
+        <script>
+        let currentRoom = null;
+        
+        async function activateVoice() {{
+            const btn = document.getElementById('micBtn');
+            const status = document.getElementById('statusText');
+            btn.innerHTML = "⏳ Connecting to Cloud...";
+            
+            try {{
+                currentRoom = new LivekitClient.Room({{ adaptiveStream: true, dynacast: true }});
+                
+                // Attach remote assistant audio to the browser document so you can hear Aiden speak!
+                currentRoom.on(LivekitClient.RoomEvent.TrackSubscribed, (track, publication, participant) => {{
+                    if (track.kind === LivekitClient.Track.Kind.Audio) {{
+                        const element = track.attach();
+                        document.body.appendChild(element);
+                    }}
+                }});
+                
+                await currentRoom.connect("{livekit_url}", "{st.session_state.livekit_token}");
+                
+                // Explicit user click forces Chrome/Edge to ask for Mic Permission
+                await currentRoom.localParticipant.enableMicrophone();
+                
+                status.innerHTML = "🟢 Live Voice Active (Speak freely!)";
+                status.style.color = "#10B981";
+                btn.style.display = "none";
+            }} catch (err) {{
+                status.innerHTML = "❌ Mic Blocked or Error. Check browser permissions!";
+                status.style.color = "#EF4444";
+                btn.innerHTML = "🔄 Retry Microphone";
+                console.error("WebRTC Error:", err);
+            }}
+        }}
+        
+        window.addEventListener("beforeunload", () => {{
+            if (currentRoom) {{ currentRoom.disconnect(); }}
+        }});
+        </script>
+        """
+        st.components.v1.html(webrtc_html, height=110)
+    elif st.session_state.voice_connected == False:
+        st.markdown("<div style='margin-top: 10px; font-size: 13px; color: #64748B; text-align: center;'>Voice channel is disconnected.</div>", unsafe_allow_html=True)
 
 
 # Right Panel (Conversation Panel or 360 Dashboard)
 with right_col:
-    if st.session_state.get("workspace_view", "💬 AI Conversation Hub") == "📊 360 Employee Dashboard":
+    if st.session_state.get("workspace_view", "AI Conversation Hub") == "360 Employee Dashboard":
         render_employee_dashboard(user_id)
     else:
         st.markdown(f"""
@@ -488,7 +576,6 @@ with right_col:
 
         current_messages = all_sessions[user_id][st.session_state.current_thread_id]
         
-        # CRITICAL FIX: height=550 locks the chat box into a clean, scrollable window!
         chat_container = st.container(height=550, border=False)
 
         with chat_container:
@@ -497,7 +584,6 @@ with right_col:
                 with st.chat_message(msg["role"]):
                     content = msg["content"]
                     
-                    # --- FORM 1: HR LEAVE FORM ---
                     if "[RENDER_LEAVE_FORM]" in content:
                         clean_text = content.replace("[RENDER_LEAVE_FORM]", "").strip()
                         if clean_text: st.markdown(clean_text + sender_badge)
@@ -521,7 +607,6 @@ with right_col:
                                     save_all_sessions(all_sessions)
                                     st.rerun()
 
-                    # --- FORM 2: IT TICKET FORM ---
                     elif "[RENDER_TICKET_FORM]" in content:
                         clean_text = content.replace("[RENDER_TICKET_FORM]", "").strip()
                         if clean_text: st.markdown(clean_text + sender_badge)
@@ -545,7 +630,6 @@ with right_col:
                                     save_all_sessions(all_sessions)
                                     st.rerun()
 
-                    # --- FORM 3: FINANCE EXPENSE FORM ---
                     elif "[RENDER_EXPENSE_FORM]" in content:
                         clean_text = content.replace("[RENDER_EXPENSE_FORM]", "").strip()
                         if clean_text: st.markdown(clean_text + sender_badge)
@@ -561,7 +645,6 @@ with right_col:
                                 with col_a: f_curr = st.selectbox("Currency", ["USD", "EUR", "GBP", "INR"])
                                 with col_b: f_amt = st.number_input("Amount", min_value=1.0, value=50.0, step=5.0)
                             f_desc = st.text_area("Business Justification & Details", placeholder="Provide business reason and list covered items...")
-                            st.caption("📎 Note: Claims over $25 USD require digital receipt attachment per Global Expense Policy.")
                             if st.form_submit_button("🚀 Submit Expense Claim", use_container_width=True):
                                 if not f_name.strip() or not f_desc.strip(): st.error("Please complete report name and business justification.")
                                 else:
@@ -572,7 +655,6 @@ with right_col:
                                     save_all_sessions(all_sessions)
                                     st.rerun()
 
-                    # --- FORM 4: TRAVEL REQUEST FORM ---
                     elif "[RENDER_TRAVEL_FORM]" in content:
                         clean_text = content.replace("[RENDER_TRAVEL_FORM]", "").strip()
                         if clean_text: st.markdown(clean_text + sender_badge)
@@ -589,7 +671,6 @@ with right_col:
                             with col_a: trv_curr = st.selectbox("Currency", ["USD", "EUR", "GBP", "INR"])
                             with col_b: trv_budget = st.number_input("Estimated Total Budget", min_value=50.0, value=1200.0, step=50.0)
                             trv_purpose = st.text_area("Business Purpose & Justification", placeholder="e.g. Annual Global Sales Conference / Client Onboarding")
-                            st.caption("✈️ Policy Note: Flights under 6 hours must be booked in Economy. Always select corporate rates for Marriott/Hilton.")
                             if st.form_submit_button("🚀 Submit Travel Plan", use_container_width=True):
                                 if not trv_dest.strip() or not trv_purpose.strip(): st.error("Please provide destination and business purpose.")
                                 else:
@@ -602,7 +683,6 @@ with right_col:
                     else:
                         st.markdown(content + sender_badge)
 
-                    
 # ============================================================
 # Chat Backend Processing via LangGraph
 # ============================================================
